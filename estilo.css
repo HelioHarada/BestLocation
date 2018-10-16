@@ -2,3 +2,84 @@
     justify-content: flex-end;
 
 }
+
+.banner-begin{
+    background-image: url("maps-banner.jpg");
+    height: 600px;
+    
+}
+
+.title{
+    font-size: 82px;
+    text-shadow: 2px 2px 2px #ccc;
+    margin: 100px 0px 0px 140px;
+}
+
+
+
+.list-function{
+    margin: 20px 0px 0px 140px;
+}
+
+.list-function ul li{
+    font-size: 24px;
+    list-style-type:none;
+    margin: 10px 0px 0px 0px;
+    text-shadow: 2px 2px 2px #ccc;
+}
+
+
+
+.form-search{
+    padding: 20px;
+    border-radius: 25px;
+    background-color: #009EDF;
+    margin: 100px 0px 0px 0px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    color:white;
+}
+
+.title-form{
+    color: white;
+    font-weight: 400; 
+    margin-bottom: 10px;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+.form-control {
+    height: auto!important;
+padding: 8px 12px !important;
+}
+.input-group {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+
+.btn-search{
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 28px;
+    padding: 6px 12px;
+    color: #666;
+    text-shadow: 0 1px #fff;
+    cursor: pointer;
+    -moz-border-radius: 3px 3px;
+    -webkit-border-radius: 3px 3px;
+    border-radius: 3px 3px;
+    -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    box-shadow: 0 1px #fff inset, 0 1px #ddd;
+    background: #f5f5f5;
+    background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+    background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+}
+}
