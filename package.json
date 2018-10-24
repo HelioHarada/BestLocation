@@ -1,0 +1,25 @@
+{
+  "name": "bestlocation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4",
+    "restify": "^7.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leoomolina/BestLocation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leoomolina/BestLocation/issues"
+  },
+  "homepage": "https://github.com/leoomolina/BestLocation#readme"
+}

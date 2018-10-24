@@ -1,56 +1,12 @@
-const restify = require('restify');
-var http = require('http');
-const fs = require('fs');
-var url = require('url');
+var express = require('express');
+var bodyParser = require('body-parser');
 
-var pathPage = function (page) {
-  return __dirname + "/dist/" + page + ".html";
-};
+const app = express();
+const port = 8080;
 
-var router = function (pathname) {
-  if (pathname && pathname != "/") {
-    fileExists(pathPage(pathname));
-    return pathPage(pathname);
-  }
-  return pathPage("index");
-};
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-var fileExists = function (filePath) {
-  try {
-    return fs.statSync(filePath).isFile();
-  } catch (err) {
-    return false;
-  }
-}
+app.use(express.static('dist'));
 
-// const server = restify.createServer({
-//     name: 'myapp',
-//     version: '1.0.0'
-//   });
-
-//   server.use(restify.plugins.acceptParser(server.acceptable));
-//   server.use(restify.plugins.queryParser());
-//   server.use(restify.plugins.bodyParser());  
-
-//   server.listen(8080, function () {
-//     console.log('Server Started ' );
-//   });
-
-var server = http.createServer(function (request, response) {
-  var page = router(url.parse(request.url).pathname);
-
-  fs.readFile(page, function(err, data){
-    response.end(data)
-    console.log(data);
-  });
-
-});
-
-server.listen(8080, function(){
-  console.log('Servidor started');
-});
-
-// server.get('/', restify.plugins.serveStatic({
-//   directory: './dist',
-//   file: 'index.html',
-// }));
+app.listen(port, () => console.log(`App listening on port ${port}!`));
