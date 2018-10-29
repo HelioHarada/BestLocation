@@ -2,6 +2,7 @@ var Todo = require('./models/todo');
 var Imovel = require('./models/imovel');
 var User = require('./models/user')
 
+
 module.exports = function (app) {
     function getTodos(res) {
         Todo.find(function (err, todos) {
@@ -71,8 +72,7 @@ module.exports = function (app) {
 
     // create todo and send back all todos after creation
     app.post('/api/imoveis', function (req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
+        
         Imovel.create({
             titulo: req.body.text,
             endereco: req.body.text,
