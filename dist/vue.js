@@ -1,3 +1,6 @@
+
+// ########## MENU ###############
+
 Vue.component('menu-header',{
      template : `
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,7 +22,7 @@ Vue.component('menu-header',{
            <a class="nav-link" href="lista.html">Lista de Imóveis</a>
          </li>
          <li class="nav-item">
-             <a class="nav-link" href="login.html">Login</a>
+             <a class="nav-link" data-toggle="modal" data-target="#login-modal" >Login</a>
          </li>
          <!-- <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -42,6 +45,12 @@ var header = new Vue({
     el: '#header',
 
   })
+//  ############### MODAL LOGIN #######################
+
+Vue.component('login',{
+  template: "#login"
+})
+
 
   // ####################################################
   
