@@ -39,60 +39,71 @@ Vue.component('menu-header',{
 })
 
 var header = new Vue({
-    el: '#header'
+    el: '#header',
+
   })
 
+  // ####################################################
   
 
   Vue.component('form-busca',{
-    props: ['preco'],
-    template: `
-    <form>
-    <div class="form-group">
-      <h2 class="title-form" align="center" >Busca</h2>
-      <label for="exampleInputEmail1">Cidade</label>
-      <input type="email" class="form-control" id="exampleInputEmail1"  placeholder="Digite sua cidade">
 
-    </div>
+    template: "#form-busca",
+    prop:['preco'],
+    data(){
+      return {
+        content: this.preco
+      }
+    },
+    methods: {
+      alterar(e){
+        this.$emit('input', this.content)
+      }
+    }
 
-    <!-- <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div> -->
-
-    <div class="form-group">
-        <label for="formControlRange">Preço</label>
-        <span>{{preco}}</span>
-        <input v-model="preco" type="range" class="form-control-range" id="formControlRange">
-      </div>
-    
-      <!-- Checkbox  -->
-
-      <label>O que deseja perto do seu imovel:</label>
-
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Escola</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-        <label class="form-check-label" for="exampleCheck2">Restaurante</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck3">
-        <label class="form-check-label" for="exampleCheck3">Mercado</label>
-    </div>
-    
-  </form>
-    `
   })
+
+
 
   var formBusca = new Vue({
     el: '#form-busca',
     data:{
-      preco : '100'
+      preco: ''
     }
-
   })
+
+
+  // export default{
+  //   methods: {
+  //     alterar(){
+  //       console.log("teste")
+  //     }
+  //   }
+  // }
+
+  // var sliderPreco = new Vue({
+  //   el: '#sliderPreco',
+
+  //   }
+  // })
+
+  // const BasicInput = {
+  //   template: '<input type="range" v-model="content" @input="handleInput" />',
+  //   prop: ['value'],
+  //   data () {
+  //     return {
+  //       content: this.value
+  //     }
+  //   },
+  //   methods: {
+  //     handleInput (e) {
+  //       this.$emit('input', this.content)
+  //     }
+  //   }
+  // }
+  
+  // new Vue({
+  //   el: '#app',
+  //   data: { name: '' },
+  //   components: { BasicInput }
+  // })
