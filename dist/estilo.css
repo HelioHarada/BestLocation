@@ -7,6 +7,10 @@ body{
 
 }
 
+.menu-login{
+    cursor: pointer;
+}
+
 .banner-begin{
     /* background-image: url("maps-banner.jpg"); */
     height: 600px;
