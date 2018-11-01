@@ -2,6 +2,13 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Bootstrap */
+
+
+/* 
+    Menu
+*/
+
 .nav-bl{
     justify-content: flex-end;
 
@@ -12,7 +19,7 @@ body{
 }
 
 .banner-begin{
-    /* background-image: url("maps-banner.jpg"); */
+    background-image: url("maps-banner.jpg");
     height: 600px;
     
 }
@@ -46,11 +53,13 @@ body{
     color:white;
 }
 
+
 .title-form{
     color: white;
     font-weight: 400; 
     margin-bottom: 10px;
 }
+
 
 .form-group{
 	margin-bottom: 15px;
@@ -58,7 +67,7 @@ body{
 
 .form-control {
     height: auto!important;
-padding: 8px 12px !important;
+    padding: 8px 12px !important;
 }
 .input-group {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
@@ -66,7 +75,7 @@ padding: 8px 12px !important;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
 }
 
-.btn-search{
+/* .btn-search{
     width: 100%;
     border: 1px solid #ccc;
     margin-top: 28px;
@@ -88,7 +97,7 @@ padding: 8px 12px !important;
     background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
     background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
-}
+} */
 
 .bannerDefault{
     background-color: gray;
@@ -109,7 +118,7 @@ padding: 8px 12px !important;
 
 .form-login{
     margin-top: 50px;
-   background-color: white;
+    background-color: white;
     padding: 30px;
     border-radius: 20px;
     -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
@@ -118,13 +127,7 @@ padding: 8px 12px !important;
 }
 
 
-/* POPUP ORANGE */
-
-
-.body-orange2{
-    padding: 1px 20px;
-}
-
+/* POPUP GREY */
 
 .header-grey .nav-tabs>a{
     width: 50%;
@@ -174,3 +177,9 @@ padding: 8px 12px !important;
     text-align: center;
 }
 
+
+
+/* CardMenu */
+.card-house{
+    margin-bottom: 75px;
+}
