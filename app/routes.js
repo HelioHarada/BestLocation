@@ -76,8 +76,7 @@ module.exports = function (app) {
         Imovel.create({
             titulo: req.body.text,
             endereco: req.body.text,
-            descricao: req.body.text,
-            done: false
+            descricao: req.body.text
         }, function (err, imovel) {
             if (err)
                 res.send(err);
