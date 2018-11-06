@@ -6,8 +6,7 @@ Vue.component('menu-header',{
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
      <!-- Logo -->
      <a class="navbar-brand" href="#">
-         <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-         BestLocation
+        <img class="img-logo" src="logo.png">
        </a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
@@ -50,9 +49,9 @@ var header = new Vue({
 Vue.component('login-modal',{
   template: `
   <div id="login">
-  <div class="modal fade body-orange2" id="login-modal" tabindex="-1" role="dialog">
+  <div class="modal modal-grey fade" id="login-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content content-grey ">
         <div class="modal-header header-grey">
           <!-- tab panelsss -->
           <nav>
@@ -74,7 +73,7 @@ Vue.component('login-modal',{
             <span aria-hidden="true">&times;</span>
           </button> -->
         </div>
-        <div class="modal-body">
+        <div class="modal-body body-grey">
 
         <!--  tabs -->
 
@@ -82,21 +81,21 @@ Vue.component('login-modal',{
             <div class="tab-pane fade show active" id="login-tab">
                 <!-- Form login -->
               <form>
-                <h6>login</h6>
+               
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control input-orange2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                 <!-- <label for="exampleInputEmail1">Email address</label> -->
+                  <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                 
                 </div>
+
+
+
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Password">
+                  <!-- <label for="exampleInputPassword1">Password</label> -->
+                  <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Senha">
                 </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn button-orange2">Submit</button>
+              
+                <button type="submit" class="btn button-grey">Submit</button>
               </form>
 
             </div>
@@ -106,28 +105,31 @@ Vue.component('login-modal',{
 
               <form>
                 <div class="form-group">
-                  <h6>register</h6>
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control input-orange2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        
+                  <!-- <label for="exampleInputEmail1">Email address</label> -->
+                  <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                
                 </div>
+                
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control input-orange2" id="exampleInputPassword1" placeholder="Password">
+                  <input type="text" class="form-control input-grey" id="exampleInputPassword1" placeholder="Nome">
                 </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                <div class="form-group">
+                  <input type="number" class="form-control input-grey" id="exampleInputPassword1" placeholder="Numero Telefone">
+               </div>
+
+
+                <div class="form-group">
+                 <!-- <label for="exampleInputPassword1">Password</label> -->
+                  <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button type="submit" class="btn .button-orange2">Submit</button>
+              
+                <button type="submit" class="btn button-grey">Submit</button>
               </form>
 
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -144,6 +146,39 @@ var loginModal = new Vue({
 
 })
 
+
+// ##### Open Descricao House ################# // 
+
+
+Vue.component('desc-house',{
+  template: `
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+})
+
+var loginModal = new Vue({
+  el: '#DescHouse',
+
+  })
 
   // ####################################################
   
@@ -167,12 +202,12 @@ var loginModal = new Vue({
 
 
 
-  var formBusca = new Vue({
-    el: '#form-busca',
-    data:{
-      preco: ''
-    }
-  })
+  // var formBusca = new Vue({
+  //   el: '#form-busca',
+  //   data:{
+  //     preco: ''
+  //   }
+  // })
 
 
   // Listam Casa 
