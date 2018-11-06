@@ -2,13 +2,32 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Bootstrap */
+
+
+/* 
+    Menu
+*/
+
 .nav-bl{
     justify-content: flex-end;
 
 }
 
+
+
+.img-logo{
+    width: 120px;
+}
+
+.menu-login{
+    cursor: pointer;
+}
+
 .banner-begin{
-    /* background-image: url("maps-banner.jpg"); */
+    background-image: url("bannerInicio.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 600px;
     
 }
@@ -34,19 +53,62 @@ body{
 
 
 .form-search{
-    padding: 20px;
+    /* padding: 20px;
     border-radius: 25px;
     background-color: #ff7f00;
-    margin: 100px 0px 0px 0px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    color:white;
+    /* margin: 100px 0px 0px 0px; */
+    padding-top: 90px;
+
+}
+
+
+
+.place-input{
+    background-color: white;
+    height: 60px;
+    border-radius: 4px;
+    box-shadow:0px 3px 10px -4px #000;
+  
+}
+
+.input-principal{
+    height: 100%;
+    width: calc(100% - 60px);
+    border: none;
+    border-radius: 4px;
+    padding: 0px 0px 0px 15px;
+    font-size: 18px;
+}
+
+.input-principal:focus, .btn-enviar:hover, .btn-enviar:active{
+    outline: none;
+}
+
+.btn-enviar{
+    border-radius: 4px;
+    height: 54px;
+    width: 54px;
+    margin: 3px 4px 0px 0px;
+    float: right;
+    border: none;
+    background-color: #ff7f00;
+    cursor: pointer;
+}
+
+.btn-enviar:hover{
+    background-color: #ff8915;
+}
+
+.icon-serach{
+    color: white;
+    font-size: 18px;
 }
 
 .title-form{
-    color: white;
     font-weight: 400; 
-    margin-bottom: 10px;
+
 }
+
 
 .form-group{
 	margin-bottom: 15px;
@@ -54,7 +116,7 @@ body{
 
 .form-control {
     height: auto!important;
-padding: 8px 12px !important;
+    padding: 8px 12px !important;
 }
 .input-group {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
@@ -62,7 +124,7 @@ padding: 8px 12px !important;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
 }
 
-.btn-search{
+/* .btn-search{
     width: 100%;
     border: 1px solid #ccc;
     margin-top: 28px;
@@ -84,13 +146,13 @@ padding: 8px 12px !important;
     background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
     background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
-}
+} */
 
 .bannerDefault{
-    background-color: gray;
+    background-color: grey;
     /* width: 80%; */
     /* margin-left: 10%; */
-    margin-top: 40px;
+  
     margin-bottom: 40px;
     height: 100px;
 }
@@ -105,10 +167,116 @@ padding: 8px 12px !important;
 
 .form-login{
     margin-top: 50px;
-   background-color: white;
+    background-color: white;
     padding: 30px;
     border-radius: 20px;
     -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
     -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
     box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+
+
+/* POPUP GREY */
+
+/* position popup */
+.modal-grey{
+    padding-top:115px;
+}
+
+/* tamanho dela */
+
+.content-grey{
+    width: 450px;
+}
+
+.body-grey{
+    margin-top: 15px;
+    padding: 1px 20px 30px;
+}
+
+.header-grey .nav-tabs>a{
+    width: 50%;
+}
+
+.header-grey .nav-tabs{
+    border: none;
+}
+
+.input-grey{
+    margin-top:25px;
+    display: block;
+    width: 100%;
+    height: 45px;
+    border-radius: 25px;
+    border: 0;
+    color: #1a212f;
+    background: #ccc;
+    transition: .3s ease;
+}
+
+
+.header-grey nav{
+    width: 100%;
+}
+
+.header-grey{
+    padding: 0px;
+    border-bottom: none;
+}
+
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background: none;
+    border: none;
+    border-radius: 0px 4px 0 0;
+    color:#545962;
+    transition: .3s ease;
+    padding: 15px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
+    background: none;
+    border: none;
+    border-radius: 0px 4px 0 0;
+    color:#545962;
+    transition: .3s ease;
+    padding: 15px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nav-tabs .nav-item .nav-link, .nav-tabs .nav-link{
+    background-color: #303340;
+    color: #EBEBEC;
+    border:none;
+    font-weight: bold;
+}
+
+.header-grey .nav-tabs>li a,.header-grey .nav-tabs li a:hover,.header-grey .nav-tabs li a:focus{
+    background-color: #303340;
+    color: #EBEBEC;
+    border:none;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button-grey{
+    margin-bottom: 15px;
+    border-radius: 25px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    background-color: #00b147;
+}
+
+/* CardMenu */
+.card-house{
+    margin-bottom: 75px;
 }
