@@ -14,7 +14,7 @@ Vue.component('menu-header',{
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-right">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -84,7 +84,7 @@ template: `
             
              <div class="form-group">
               <!-- <label for="exampleInputEmail1">Email address</label> -->
-               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
               
              </div>
 
@@ -95,7 +95,7 @@ template: `
                <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Senha">
              </div>
            
-             <button type="submit" class="btn button-grey">Submit</button>
+             <button type="submit" class="btn button-grey">Entrar</button>
            </form>
 
          </div>
@@ -107,7 +107,7 @@ template: `
              <div class="form-group">
      
                <!-- <label for="exampleInputEmail1">Email address</label> -->
-               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
              
              </div>
              
@@ -122,10 +122,10 @@ template: `
 
              <div class="form-group">
               <!-- <label for="exampleInputPassword1">Password</label> -->
-               <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Password">
+               <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Senha">
              </div>
            
-             <button type="submit" class="btn button-grey">Submit</button>
+             <button type="submit" class="btn button-grey">Cadastrar-se</button>
            </form>
 
          </div>
