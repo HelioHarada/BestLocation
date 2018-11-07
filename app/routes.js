@@ -1,7 +1,6 @@
 var Todo = require('./models/todo');
 var Imovel = require('./models/imovel');
-var User = require('./models/user')
-
+var User = require('./models/user');
 
 module.exports = function (app) {
     function getTodos(res) {
@@ -72,31 +71,30 @@ module.exports = function (app) {
 
     // create todo and send back all todos after creation
     app.post('/api/imoveis', function (req, res) {
-        
-        Imovel.create({
-            titulo: req.body.text,
-            endereco: req.body.text,
-            descricao: req.body.text
-        }, function (err, imovel) {
-            if (err)
-                res.send(err);
+        var imovel = new Imovel();
+        imovel.titulo = req.body.titulo;
+        imovel.endereco = req.body.endereco;
+        imovel.descricao = req.body.descricao;
 
-            // get and return all the todos after you create another
-            getImoveis(res);
+        imovel.save(function (error) {
+            if (error)
+                res.send("Erro ao salvar o imovel: " + error);
+
+            res.status(201).json({ message: "Imovel inserido com sucesso" });
         });
-
     });
 
     // delete a todo
     app.delete('/api/imoveis/:imovel_id', function (req, res) {
-        Imovel.remove({
-            _id: req.params.imovel_id
-        }, function (err, imovel) {
-            if (err)
-                res.send(err);
+        Imovel.findByIdAndRemove(req.params.imovel_id, (err, imovel) => {
+            if (err) return res.status(500).send(err);
 
-            getImoveis(res);
-        });
+            const response = {
+                message : "Imovel removido com sucesso",
+                id: imovel.id
+            };
+            return res.status(200).send(response);
+        }); 
     });
 
     function getUsers(res) {

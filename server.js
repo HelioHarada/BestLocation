@@ -5,14 +5,14 @@ var morgan = require('morgan');
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 //var Usuario = require('./models/user');
 
-const app = express();
+var app = express();
 const port = 8080;
 
 mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } );
 
 app.use(express.static(__dirname + '/public')); //definir a localização dos arquivos estáticos /public/img será /img for users
 app.use(morgan('dev'));     // registrar cada requisição no console
-app.use(bodyParser.urlencoded({'extended':'true'}));    // parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended:true}));    // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));     // parse application/vnd.api+json como json
 app.use(methodOverride());
