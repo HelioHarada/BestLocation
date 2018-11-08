@@ -236,7 +236,6 @@ var loginModal = new Vue({
 
 Vue.component('cadastrar-imovel',{
   template: `
-  <button class="btn button-grey"  @click="deletar()">Delete</button>
     <form ref="form" @submit.prevent="handleSubmit">
 
     <div class="alert alert-danger" role="alert"  v-if="errors.length" >
@@ -311,11 +310,7 @@ Vue.component('cadastrar-imovel',{
         return true;
       }
     },
-    deletar(){
-      this.$http.delete('http://localhost:8080/api/imoveis/5be477c7f3a1672c9456d857').then((response) => {
-        console.log("deletado")
-      })
-    }
+
 
   }
    
@@ -323,5 +318,42 @@ Vue.component('cadastrar-imovel',{
 
 var cadastrarImovel = new Vue({
 el: '#cadastrarImovel',
-
 })
+
+// ## Deletar 
+Vue.component('deletar-imovel',{
+  template: ` 
+  <form ref="form" >
+
+    <div class="form-group">
+      <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
+    </div>
+
+   
+    <button class="btn button-grey"  @click.prevent="deletar()">Delete</button>
+  </form>`,
+  data(){
+    return{
+ 
+      resource: this.$resource('http://localhost:8080/api/imoveis'),
+      imoveis: [],
+      id : ''
+    }
+  },
+  methods:{
+    deletar(){
+        id = this.id
+       
+        url = 'http://localhost:8080/api/imoveis/'+id
+        console.log(url)
+      this.$http.delete(url).then((response) => {
+        alert("Deletado com sucesso")
+      })
+    }
+  }
+})
+
+
+var deletarImovel = new Vue({
+  el: '#deletarImovel',
+  })
