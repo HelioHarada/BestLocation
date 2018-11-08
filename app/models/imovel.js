@@ -12,5 +12,9 @@ module.exports = mongoose.model('Imovel', {
     descricao : {
         type: String,
         default: ''
+    },
+    preco: {
+        type: Number,
+        default: '0.00'
     }
 });

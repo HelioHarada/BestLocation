@@ -100,6 +100,7 @@ module.exports = function (app) {
         imovel.titulo = req.body.titulo;
         imovel.endereco = req.body.endereco;
         imovel.descricao = req.body.descricao;
+        imovel.preco = req.body.preco;
 
         imovel.save(function (error) {
             if (error)
@@ -140,6 +141,7 @@ module.exports = function (app) {
                 imovel.titulo = req.body.titulo;
                 imovel.descricao = req.body.descricao;
                 imovel.endereco = req.body.endereco;
+                imovel.preco = req.body.preco;
 
                 imovel.save(function (error) {
                     if (error)
