@@ -144,7 +144,7 @@ el: '#placemodal',
 })
 
 
-// ##### Modal Descricao House ################# // 
+// ##### Modal Descricao House, desc-casa ################# // 
 
 
 Vue.component('desc-house',{
@@ -160,15 +160,39 @@ template: `
        </button>
      </div>
      <div class="modal-body">
-     
+     <h5 class="card-title">{{imoveis.titulo}}</h5>
+     <p class="card-text">descrição: {{imoveis.descricao}}</p>
+     <p class="card-text">Endereço: {{imoveis.endereco}}</p>
+     <p class="card-text">id: {{imoveis._id}}</p>
+     <a class="btn btn-primary"   data-toggle="modal" data-target="#desc-modal" >Mais+</a>  
      </div>
 
    </div>
  </div>
 </div>
-`
+`,
+data(){
+  return{
+    
+    resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+    imoveis: []
+  }
+},
+ methods: {
+
+   iniciar(){
+     this.resource.get({}).then((response) =>{
+       this.imoveis = response.data[2]
+     
+     })
+   }
+ },
+ created(){
+   this.iniciar()
+ }
+ 
 })
-$('#desc-modal').modal()
+
 var descModal = new Vue({
 el: '#descHouse',
 
@@ -178,6 +202,38 @@ el: '#descHouse',
 
 // ####################################################
 
+// Buscar casa
+
+Vue.component('input-busca',{
+  template: `
+  <form>
+  <div class="place-input">
+    <input v-model="id" class="input-principal">
+    <button @click.prevent="getId(id)" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
+  </div>
+</form>`,
+data(){
+  return{
+    resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+    id : '',
+    imoveis: []
+  }
+},  
+methods: {
+  getId(id){
+    console.log(id)
+    this.resource.get({}).then((response) =>{
+      this.imoveis = response.data
+      
+      console.log(this.imoveis)
+    })
+   },
+},
+})
+
+var inputBusca = new Vue({
+  el: '#placeBuscar',
+ })
 
 
 // Listam Casa 
@@ -194,7 +250,7 @@ Vue.component('card-house',{
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
-         <a class="btn btn-primary"     data-toggle="modal" data-target="#desc-modal" >Mais+</a>
+         <a class="btn btn-primary"    @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
          
         </div>
@@ -205,12 +261,20 @@ Vue.component('card-house',{
  `,
  data(){
    return{
-      id : '5be44f4bf3a1672c9456d84e',
+  
      resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+   
      imoveis: []
    }
  },
   methods: {
+    getId(id){
+      id = this.id
+      this.resource.get({}).then((response) =>{
+        this.idImovel = response.data
+        console.log(id)
+      })
+     },
     iniciar(){
       this.resource.get({}).then((response) =>{
         this.imoveis = response.data
@@ -241,6 +305,7 @@ Vue.component('cadastrar-imovel',{
     </ul>
   </div>
 
+    <h2 align="center">Cadastrar Ímovel</h2>
 
     <div class="form-group">
       <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Digite o titulo do imovel">
@@ -256,6 +321,10 @@ Vue.component('cadastrar-imovel',{
         <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="descrição do Imovel">
       </div>
 
+<!--      <div class="form-group">
+        <input type="file" class="form-control input-grey"  placeholder="descrição do Imovel">
+      </div>
+-->
     <button type="submit" class="btn button-grey"  >Cadastrar</button>
    
   </form>`,
@@ -322,13 +391,13 @@ el: '#cadastrarImovel',
 Vue.component('deletar-imovel',{
   template: ` 
   <form ref="form" >
-
+  <h2 align="center">Deletar Ímovel</h2>
     <div class="form-group">
       <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
     </div>
 
    
-    <button class="btn button-grey"  @click.prevent="deletar()">Delete</button>
+    <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
   </form>`,
   data(){
     return{
@@ -346,11 +415,14 @@ Vue.component('deletar-imovel',{
         url = 'http://localhost:8080/api/imoveis/'+id
         console.log(url)
       this.$http.delete(url).then((response) => {
+       
         alert("Deletado com sucesso")
-      }), response =>{
+      }, response =>{
+        
         console.log("Erro ao deletar!");
-        alert("erro")
-      }
+        alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
+      })
+      this.id = ""
     }
   }
 })

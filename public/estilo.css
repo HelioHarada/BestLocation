@@ -279,6 +279,22 @@ body{
     background-color: #00b147;
 }
 
+.button-delete{
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    background-color: #9e0000;
+}
+
+.button-delete:hover{
+    background-color: #e40000;
+}
+
 /* CardMenu */
 .content-lista{
     margin-left: 50px;
