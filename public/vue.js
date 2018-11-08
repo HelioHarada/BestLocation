@@ -24,17 +24,16 @@ Vue.component('menu-header',{
       <li class="nav-item">
           <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" >Login</a>
       </li>
-      <!-- <li class="nav-item dropdown">
+     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Admin
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
+          <a class="dropdown-item" href="deletar.html">Deletar</a>
+   
         </div>
-      </li> -->
+      </li> 
     </ul>
   </div>
 </nav>
@@ -145,38 +144,35 @@ el: '#placemodal',
 })
 
 
-// ##### Open Descricao House ################# // 
+// ##### Modal Descricao House ################# // 
 
 
-// Vue.component('desc-house',{
-// template: `
-// <!-- Modal -->
-// <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-//  <div class="modal-dialog" role="document">
-//    <div class="modal-content">
-//      <div class="modal-header">
-//        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-//        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//          <span aria-hidden="true">&times;</span>
-//        </button>
-//      </div>
-//      <div class="modal-body">
-//        ...
-//      </div>
-//      <div class="modal-footer">
-//        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-//        <button type="button" class="btn btn-primary">Save changes</button>
-//      </div>
-//    </div>
-//  </div>
-// </div>
-// `
-// })
+Vue.component('desc-house',{
+template: `
 
-// var loginModal = new Vue({
-// el: '#DescHouse',
+<div class="modal fade" id="desc-modal" tabindex="-1" role="dialog" >
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLongTitle">Descrição</h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+     
+     </div>
 
-// })
+   </div>
+ </div>
+</div>
+`
+})
+$('#desc-modal').modal()
+var descModal = new Vue({
+el: '#descHouse',
+
+})
 
 
 
@@ -186,19 +182,21 @@ el: '#placemodal',
 
 // Listam Casa 
 
-
+//  GET / Buscar
 Vue.component('card-house',{
  template: ` 
-<div class="row" >
+<div class="row content-lista" >
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 300px;">
        <img class="card-img-top" src="casa.jpg" alt="Card image cap">
        <div class="card-body">
          <h5 class="card-title">{{imovel.titulo}}</h5>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
-         <a href="#" class="btn btn-primary">Mais+</a>
+         <a class="btn btn-primary"     data-toggle="modal" data-target="#desc-modal" >Mais+</a>
+    
+         
         </div>
     </div>
   </div>
@@ -207,8 +205,8 @@ Vue.component('card-house',{
  `,
  data(){
    return{
-
-     resource: this.$resource('http://localhost:8080/api/imoveis'),
+      id : '5be44f4bf3a1672c9456d84e',
+     resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
      imoveis: []
    }
  },
@@ -217,8 +215,6 @@ Vue.component('card-house',{
       this.resource.get({}).then((response) =>{
         this.imoveis = response.data
         console.log(response.data)
-        // console.log("this imoveis")
-        // console.log(this.imoveis)
       })
     }
   },
@@ -233,7 +229,7 @@ var loginModal = new Vue({
 })
 
 
-
+//  Post / Cadastrar 
 Vue.component('cadastrar-imovel',{
   template: `
     <form ref="form" @submit.prevent="handleSubmit">
@@ -265,7 +261,7 @@ Vue.component('cadastrar-imovel',{
   </form>`,
   data(){
     return{
- 
+      // requisição 
       resource: this.$resource('http://localhost:8080/api/imoveis'),
       imoveis: [],
       errors: [],
@@ -277,6 +273,7 @@ Vue.component('cadastrar-imovel',{
   methods: {
     
     handleSubmit () {
+      // Validação
       this.errors = [];
 
       if (!this.titulo) {
@@ -292,7 +289,7 @@ Vue.component('cadastrar-imovel',{
       }
 
       if (!this.errors.length) {
-
+        // Post
         this.$http.post('http://localhost:8080/api/imoveis', {
           titulo: this.titulo,
           endereco: this.endereco,
@@ -321,6 +318,7 @@ el: '#cadastrarImovel',
 })
 
 // ## Deletar 
+
 Vue.component('deletar-imovel',{
   template: ` 
   <form ref="form" >
@@ -341,6 +339,7 @@ Vue.component('deletar-imovel',{
     }
   },
   methods:{
+    // Função deletar
     deletar(){
         id = this.id
        
@@ -348,7 +347,10 @@ Vue.component('deletar-imovel',{
         console.log(url)
       this.$http.delete(url).then((response) => {
         alert("Deletado com sucesso")
-      })
+      }), response =>{
+        console.log("Erro ao deletar!");
+        alert("erro")
+      }
     }
   }
 })
@@ -357,3 +359,4 @@ Vue.component('deletar-imovel',{
 var deletarImovel = new Vue({
   el: '#deletarImovel',
   })
+

@@ -280,6 +280,11 @@ body{
 }
 
 /* CardMenu */
+.content-lista{
+    margin-left: 50px;
+}
+
+
 .card-house{
     margin-bottom: 75px;
 }
