@@ -2,11 +2,6 @@
 
 // ########## MENU ###############
 
-// Vue.http.get('http://localhost:8080/api/imoveis').then(function(response){
-//       console.log('Dados aqui:')
-//     console.log(response.data)
-// });
-
 Vue.component('menu-header',{
   template : `
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -188,78 +183,27 @@ el: '#placemodal',
 // ####################################################
 
 
-Vue.component('form-busca',{
-
- template: "#form-busca",
- prop:['preco'],
- data(){
-   return {
-     content: this.preco
-   }
- },
- methods: {
-   alterar(e){
-     this.$emit('input', this.content)
-   }
- }
-
-})
-
-
-
-// var formBusca = new Vue({
-//   el: '#form-busca',
-//   data:{
-//     preco: ''
-//   }
-// })
-
 
 // Listam Casa 
 
 
 Vue.component('card-house',{
  template: ` 
- <div class="row">
- 
-   <div class="col-md-4 card-house">
-     <div class="card" style="width: 18rem;">
+<div class="row" >
+  <div class="col-md-4 card-house" v-for="imovel in imoveis" >
+    <div class="card" style="width: 18rem;">
        <img class="card-img-top" src="casa.jpg" alt="Card image cap">
        <div class="card-body">
-         <h5 class="card-title">{{imoveis.titulo}}</h5>
-         <p class="card-text">descrição: {{imoveis.descricao}}</p>
-         <p class="card-text">Endereço: {{imoveis.endereco}}</p>
+         <h5 class="card-title">{{imovel.titulo}}</h5>
+         <p class="card-text">descrição: {{imovel.descricao}}</p>
+         <p class="card-text">Endereço: {{imovel.endereco}}</p>
+         <p class="card-text">id: {{imovel._id}}</p>
          <a href="#" class="btn btn-primary">Mais+</a>
-       </div>
-     </div>
-   </div>
-
-
-   <hr>
-
-   <div class="col-md-4 card-house">
-   <div class="card" style="width: 18rem;">
-     <img class="card-img-top" src="casa.jpg" alt="Card image cap">
-     <div class="card-body">
-       <h5 class="card-title">Card title</h5>
-       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-       <a href="#" class="btn btn-primary">Go somewhere</a>
-     </div>
-   </div>
- </div>
-
- <div class="col-md-4 card-house">
- <div class="card" style="width: 18rem;">
-   <img class="card-img-top" src="casa.jpg" alt="Card image cap">
-   <div class="card-body">
-     <h5 class="card-title">Card title</h5>
-     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-     <a href="#" class="btn btn-primary">Go somewhere</a>
-   </div>
- </div>
+        </div>
+    </div>
+  </div>
 </div>
-
- </div>
+   
  `,
  data(){
    return{
@@ -271,8 +215,8 @@ Vue.component('card-house',{
   methods: {
     iniciar(){
       this.resource.get({}).then((response) =>{
-        this.imoveis = response.data[0]
-        console.log(esponse.data)
+        this.imoveis = response.data
+        console.log(response.data)
         // console.log("this imoveis")
         // console.log(this.imoveis)
       })
@@ -286,60 +230,98 @@ Vue.component('card-house',{
 
 var loginModal = new Vue({
  el: '.cardHouse',
-
-//  data: function(){
-
-//   this.$http.get('http://localhost:8080/api/imoveis').then((response) => {
-//     console.log('Dados aqui:')
-//     // console.log(response.data[0].titulo)
-//     title = response.data[0].titulo;
-//     desc = response.data[0].descricao;
-//     endereco = response.data[0].endereco;
-
-//     console.log(title)
-//     console.log(desc)
-//     console.log(endereco)
-    
-//     return title = 'teste';
-
-//   });
-
-// }
 })
 
 
 
-// export default{
-//   methods: {
-//     alterar(){
-//       console.log("teste")
-//     }
-//   }
-// }
+Vue.component('cadastrar-imovel',{
+  template: `
+  <button class="btn button-grey"  @click="deletar()">Delete</button>
+    <form ref="form" @submit.prevent="handleSubmit">
 
-// var sliderPreco = new Vue({
-//   el: '#sliderPreco',
+    <div class="alert alert-danger" role="alert"  v-if="errors.length" >
+    <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </div>
 
-//   }
-// })
 
-// const BasicInput = {
-//   template: '<input type="range" v-model="content" @input="handleInput" />',
-//   prop: ['value'],
-//   data () {
-//     return {
-//       content: this.value
-//     }
-//   },
-//   methods: {
-//     handleInput (e) {
-//       this.$emit('input', this.content)
-//     }
-//   }
-// }
+    <div class="form-group">
+      <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Digite o titulo do imovel">
+    </div>
 
-// new Vue({
-//   el: '#app',
-//   data: { name: '' },
-//   components: { BasicInput }
-// })
+
+
+    <div class="form-group">
+      <input type="text" class="form-control input-grey" id="endereco" v-model="endereco" placeholder="Endereço">
+    </div>
+
+    <div class="form-group">
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="descrição do Imovel">
+      </div>
+
+    <button type="submit" class="btn button-grey"  >Cadastrar</button>
+   
+  </form>`,
+  data(){
+    return{
+ 
+      resource: this.$resource('http://localhost:8080/api/imoveis'),
+      imoveis: [],
+      errors: [],
+      titulo : '',
+      endereco : '',
+      descricao : ''
+    }
+  },
+  methods: {
+    
+    handleSubmit () {
+      this.errors = [];
+
+      if (!this.titulo) {
+        this.errors.push('O titulo é obrigatório.');
+      }
+
+      if (!this.endereco) {
+        this.errors.push('O endereco é obrigatório.');
+      }
+      
+      if (!this.descricao) {
+        this.errors.push('O descricao é obrigatório.');
+      }
+
+      if (!this.errors.length) {
+
+        this.$http.post('http://localhost:8080/api/imoveis', {
+          titulo: this.titulo,
+          endereco: this.endereco,
+          descricao: this.descricao
+        }).then(response =>{
+        this.imoveis = response.data
+
+        console.log(response.data)
+
+        })
+        alert('cadastro com sucesso')
+         this.titulo = ""
+          this.endereco = ""
+          this.descricao = ""
+        return true;
+      }
+    },
+    deletar(){
+      this.$http.delete('http://localhost:8080/api/imoveis/5be477c7f3a1672c9456d857').then((response) => {
+        console.log("deletado")
+      })
+    }
+
+  }
+   
+})
+
+var cadastrarImovel = new Vue({
+el: '#cadastrarImovel',
+
+})
