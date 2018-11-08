@@ -1,5 +1,11 @@
 
+
 // ########## MENU ###############
+
+// Vue.http.get('http://localhost:8080/api/imoveis').then(function(response){
+//       console.log('Dados aqui:')
+//     console.log(response.data)
+// });
 
 Vue.component('menu-header',{
   template : `
@@ -83,8 +89,8 @@ template: `
            <form>
             
              <div class="form-group">
-              <!-- <label for="exampleInputEmail1">Email address</label> -->
-               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
+              <!-- <label for="exam2pleInputEmail1">Email address</label> -->
+               <input type="email" class="form-control input-grey" id="exampleInputE2mail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
               
              </div>
 
@@ -92,7 +98,7 @@ template: `
 
              <div class="form-group">
                <!-- <label for="exampleInputPassword1">Password</label> -->
-               <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Senha">
+               <input type="password" class="form-control input-grey" id="exampleInputPassword2" placeholder="Senha">
              </div>
            
              <button type="submit" class="btn button-grey">Entrar</button>
@@ -112,17 +118,17 @@ template: `
              </div>
              
              <div class="form-group">
-               <input type="text" class="form-control input-grey" id="exampleInputPassword1" placeholder="Nome">
+               <input type="text" class="form-control input-grey" id="exampleInputPasswor21" placeholder="Nome">
              </div>
 
              <div class="form-group">
-               <input type="number" class="form-control input-grey" id="exampleInputPassword1" placeholder="Numero Telefone">
+               <input type="number" class="form-control input-grey" id="exampleInputPass2word1" placeholder="Numero Telefone">
             </div>
 
 
              <div class="form-group">
-              <!-- <label for="exampleInputPassword1">Password</label> -->
-               <input type="password" class="form-control input-grey" id="exampleInputPassword1" placeholder="Senha">
+              <!-- <label for="exampleInputPasswor3d1">Password</label> -->
+               <input type="password" class="form-control input-grey" id="exampleInputPassw3ord1" placeholder="Senha">
              </div>
            
              <button type="submit" class="btn button-grey">Cadastrar-se</button>
@@ -140,9 +146,6 @@ template: `
 
 var loginModal = new Vue({
 el: '#placemodal',
-data(){
-
-}
 
 })
 
@@ -150,35 +153,37 @@ data(){
 // ##### Open Descricao House ################# // 
 
 
-Vue.component('desc-house',{
-template: `
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
- <div class="modal-dialog" role="document">
-   <div class="modal-content">
-     <div class="modal-header">
-       <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-     </div>
-     <div class="modal-body">
-       ...
-     </div>
-     <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       <button type="button" class="btn btn-primary">Save changes</button>
-     </div>
-   </div>
- </div>
-</div>
-`
-})
+// Vue.component('desc-house',{
+// template: `
+// <!-- Modal -->
+// <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+//  <div class="modal-dialog" role="document">
+//    <div class="modal-content">
+//      <div class="modal-header">
+//        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+//        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+//          <span aria-hidden="true">&times;</span>
+//        </button>
+//      </div>
+//      <div class="modal-body">
+//        ...
+//      </div>
+//      <div class="modal-footer">
+//        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+//        <button type="button" class="btn btn-primary">Save changes</button>
+//      </div>
+//    </div>
+//  </div>
+// </div>
+// `
+// })
 
-var loginModal = new Vue({
-el: '#DescHouse',
+// var loginModal = new Vue({
+// el: '#DescHouse',
 
-})
+// })
+
+
 
 // ####################################################
 
@@ -212,6 +217,7 @@ Vue.component('form-busca',{
 
 // Listam Casa 
 
+
 Vue.component('card-house',{
  template: ` 
  <div class="row">
@@ -220,9 +226,10 @@ Vue.component('card-house',{
      <div class="card" style="width: 18rem;">
        <img class="card-img-top" src="casa.jpg" alt="Card image cap">
        <div class="card-body">
-         <h5 class="card-title">Card title</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-         <a href="#" class="btn btn-primary">Go somewhere</a>
+         <h5 class="card-title">{{imoveis.titulo}}</h5>
+         <p class="card-text">descrição: {{imoveis.descricao}}</p>
+         <p class="card-text">Endereço: {{imoveis.endereco}}</p>
+         <a href="#" class="btn btn-primary">Mais+</a>
        </div>
      </div>
    </div>
@@ -253,11 +260,51 @@ Vue.component('card-house',{
 </div>
 
  </div>
- `
+ `,
+ data(){
+   return{
+
+     resource: this.$resource('http://localhost:8080/api/imoveis'),
+     imoveis: []
+   }
+ },
+  methods: {
+    iniciar(){
+      this.resource.get({}).then((response) =>{
+        this.imoveis = response.data[0]
+        console.log(esponse.data)
+        // console.log("this imoveis")
+        // console.log(this.imoveis)
+      })
+    }
+  },
+  created(){
+    this.iniciar()
+  }
+  
 })
 
 var loginModal = new Vue({
  el: '.cardHouse',
+
+//  data: function(){
+
+//   this.$http.get('http://localhost:8080/api/imoveis').then((response) => {
+//     console.log('Dados aqui:')
+//     // console.log(response.data[0].titulo)
+//     title = response.data[0].titulo;
+//     desc = response.data[0].descricao;
+//     endereco = response.data[0].endereco;
+
+//     console.log(title)
+//     console.log(desc)
+//     console.log(endereco)
+    
+//     return title = 'teste';
+
+//   });
+
+// }
 })
 
 
