@@ -54,22 +54,47 @@ module.exports = function (app) {
     function getImoveis(res) {
         Imovel.find(function (err, imoveis) {
 
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            // caso tenha erro na recuperação, envie o erro
             if (err) {
                 res.send(err);
+                // nada mais será executado caso haja erro
             }
 
-            res.json(imoveis); // return all todos in JSON format
+            res.json(imoveis); // retorna todos imóveis no formato JSON
         });
     };
 
-    // get all todos
+    // obter todos imóveis
     app.get('/api/imoveis', function (req, res) {
-        // use mongoose to get all todos in the database
+        // usa o mongoose para obter todos os imóveis do banco de dados
         getImoveis(res);
     });
 
-    // create todo and send back all todos after creation
+    // obter imóvel por ID
+    app.get('/api/imoveis/:imovel_id', function(req, res) {
+        const id = req.params.imovel_id;
+
+        Imovel.findById(id, function (err, imovel) {
+            if (err){
+                res.status(500).json ({
+                    message: "Erro ao encontrar o imóvel: ID incorreto"
+                });
+            }
+            else if (imovel == null) {
+                res.status(400).json({
+                    message: "Imóvel não encontrado"
+                });
+            }
+            else {
+                res.status(200).json({
+                    message:"Imóvel encontrado",
+                    imovel: imovel
+                });
+            }
+        });
+    });
+
+    // criar (POST) imóvel
     app.post('/api/imoveis', function (req, res) {
         var imovel = new Imovel();
         imovel.titulo = req.body.titulo;
@@ -84,7 +109,7 @@ module.exports = function (app) {
         });
     });
 
-    // delete a todo
+    // delete imóvel
     app.delete('/api/imoveis/:imovel_id', function (req, res) {
         Imovel.findByIdAndRemove(req.params.imovel_id, (err, imovel) => {
             if (err) return res.status(500).send(err);
@@ -95,6 +120,37 @@ module.exports = function (app) {
             };
             return res.status(200).send(response);
         }); 
+    });
+
+    // Update (PUT) imóvel
+    app.put('/api/imoveis/:imovel_id', function (req, res) {
+        const id = req.params.imovel_id;
+        Imovel.findById(id, function(err, imovel){
+            if(err) {
+                res.status(500).json({
+                    message: "Erro ao encontrar o imóvel: ID incorreto"
+                });
+            }
+            else if (imovel == null) {
+                res.status(400).json({
+                    message: "Imóvel não encontrado"
+                });
+            }
+            else {
+                imovel.titulo = req.body.titulo;
+                imovel.descricao = req.body.descricao;
+                imovel.endereco = req.body.endereco;
+
+                imovel.save(function (error) {
+                    if (error)
+                        res.send("Erro ao atualizar o produto: " + error);
+
+                    res.status(200).json({
+                        message: "Produto atualizado com sucesso"
+                    });
+                });
+            }
+        });
     });
 
     function getUsers(res) {
