@@ -214,18 +214,19 @@ Vue.component('input-busca',{
 </form>`,
 data(){
   return{
-    resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+    resource: this.$resource('http://localhost:8080/api/imoveis'),
+    
     id : '',
     imoveis: []
   }
 },  
 methods: {
   getId(id){
+    
     console.log(id)
     this.resource.get({}).then((response) =>{
       this.imoveis = response.data
-      
-      console.log(this.imoveis)
+      console.log(response.data)
     })
    },
 },
@@ -249,8 +250,9 @@ Vue.component('card-house',{
          <h5 class="card-title">{{imovel.titulo}}</h5>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
+         <p class="card-text">Preço: {{imovel.preco}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
-         <a class="btn btn-primary"    @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
+         <a class="btn btn-primary" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
          
         </div>
@@ -321,6 +323,10 @@ Vue.component('cadastrar-imovel',{
         <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="descrição do Imovel">
       </div>
 
+      <div class="form-group">
+      <input type="number" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
+    </div>
+
 <!--      <div class="form-group">
         <input type="file" class="form-control input-grey"  placeholder="descrição do Imovel">
       </div>
@@ -336,7 +342,8 @@ Vue.component('cadastrar-imovel',{
       errors: [],
       titulo : '',
       endereco : '',
-      descricao : ''
+      descricao : '',
+      preco : ''
     }
   },
   methods: {
@@ -357,12 +364,17 @@ Vue.component('cadastrar-imovel',{
         this.errors.push('O descricao é obrigatório.');
       }
 
+
+      if (!this.preco) {
+        this.errors.push('O preco é obrigatório.');
+      }
       if (!this.errors.length) {
         // Post
         this.$http.post('http://localhost:8080/api/imoveis', {
           titulo: this.titulo,
           endereco: this.endereco,
-          descricao: this.descricao
+          descricao: this.descricao,
+          preco: this.preco
         }).then(response =>{
         this.imoveis = response.data
 
@@ -373,6 +385,7 @@ Vue.component('cadastrar-imovel',{
          this.titulo = ""
           this.endereco = ""
           this.descricao = ""
+          this.preco = ""
         return true;
       }
     },
