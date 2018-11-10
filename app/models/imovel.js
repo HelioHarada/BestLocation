@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('Imovel', {
+const imovelSchema = new Schema ({
     titulo: {
-       type: String,
-       default: ''
+        type: String,
+        default: ''
     },
     endereco: {
         type: String,
         default: ''
     },
-    descricao : {
+    descricao: {
         type: String,
         default: ''
     },
@@ -18,3 +19,5 @@ module.exports = mongoose.model('Imovel', {
         default: '0.00'
     }
 });
+
+mongoose.model('Imovel', imovelSchema);
