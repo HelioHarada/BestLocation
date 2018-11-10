@@ -324,7 +324,7 @@ Vue.component('cadastrar-imovel',{
       </div>
 
       <div class="form-group">
-      <input type="number" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
+      <input type="number" step="0.01" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
     </div>
 
 <!--      <div class="form-group">
