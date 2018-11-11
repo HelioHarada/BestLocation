@@ -1,9 +1,14 @@
+// importando módulos necessários
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+
+// atribuição do model registrado à variável modelUser
 const modelUser = mongoose.model('User');
 
+// inicializando objeto userController
 let userController = {};
 
+// GET
 userController.allUsers = (req, res) => {
 
     modelUser.find()
@@ -11,6 +16,7 @@ userController.allUsers = (req, res) => {
         .catch(err => res.send(err));
 }
 
+// POST
 userController.newUser = (req, res) => {
 
     if (req.body.username && req.body.password) {
@@ -83,6 +89,7 @@ userController.newUser = (req, res) => {
     }
 }
 
+// GET
 userController.detailsUser = (req, res) => {
     const id = req.params.user_id;
 
@@ -91,6 +98,7 @@ userController.detailsUser = (req, res) => {
         .catch(err => res.send(err));
 }
 
+// DELETE
 userController.deleteUser = (req, res) => {
     modelUser.findByIdAndRemove(req.params.user_id, (err, user) => {
         if (err) return res.status(500).send(err);
@@ -103,6 +111,7 @@ userController.deleteUser = (req, res) => {
     });
 }
 
+// UPDATE
  userController.updateUser = (req, res) => {
      const id = req.params.user_id;
 
@@ -135,4 +144,6 @@ userController.deleteUser = (req, res) => {
  });
  }
 
+
+// exporta o módulo
 module.exports = userController;

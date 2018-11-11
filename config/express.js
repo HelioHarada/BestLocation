@@ -1,8 +1,9 @@
+// importando módulos necessários
 var express = require('express');
 const consign = require('consign');
 var bodyParser = require('body-parser');
-const path = require('path');
 
+// exportando função de configuração que retorna a variável 'app'
 module.exports = () => {
     var app = express();
     app.set('port', (process.env.PORT || 8080));
@@ -12,6 +13,7 @@ module.exports = () => {
     app.use(bodyParser.json({ type: 'application/vnd.api+json' }));  
     app.use(express.static('public')); //definir a localização dos arquivos estáticos /public
 
+    // injeção e autoload dos nossos scripts na nossa intância
     consign({cwd: 'server'})
         .include('../app/models')
         .include('../app/controllers')

@@ -1,6 +1,10 @@
+// importação módulo mongoose
 var mongoose = require('mongoose');
+
+// guardando valor de mongoose.Schema (apenas para facilitar na hora de escrever)
 const Schema = mongoose.Schema;
 
+// objeto instância do Schema
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -21,4 +25,5 @@ const UserSchema = new Schema({
     }
 });
 
+// registrando model utilizando objeto criado
 mongoose.model('User', UserSchema);

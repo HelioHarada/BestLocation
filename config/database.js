@@ -1,7 +1,10 @@
+// importação módulo mongoose
 var mongoose = require('mongoose');
 
+// conexão no banco
 mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } );
 
+// ouvindo eventos que ocorrem em sucesso ou erro de conexão
 mongoose.connection.on('connected', () => {
     console.log('Conectado ao banco de dados.');
 });

@@ -1,6 +1,10 @@
+// importação módulo mongoose
 const mongoose = require('mongoose');
+
+// atribuição do model registrado à variável modelImovel
 const modelImovel = mongoose.model('Imovel');
 
+// inicializando objeto imovelController
 let imovelController = {};
 
 imovelController.allImoveis = (req, res) => {
@@ -83,4 +87,5 @@ imovelController.newImovel = (req, res) => {
         }));
 }
 
+// exporta o módulo
 module.exports = imovelController;
