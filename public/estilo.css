@@ -28,7 +28,7 @@ body{
 }
 
 .banner-begin{
-    background-image: url("bannerInicio.jpg");
+    background-image: url("img/bannerInicio.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 600px;

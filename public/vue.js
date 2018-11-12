@@ -7,7 +7,7 @@ Vue.component('menu-header',{
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- Logo -->
   <a class="navbar-brand" href="#">
-     <img class="img-logo" src="logo.png">
+     <img class="img-logo" src="img/logo.png">
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -245,7 +245,7 @@ Vue.component('card-house',{
 <div class="row content-lista" >
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
     <div class="card" style="width: 300px;">
-       <img class="card-img-top" src="casa.jpg" alt="Card image cap">
+       <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
        <div class="card-body">
          <h5 class="card-title">{{imovel.titulo}}</h5>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
