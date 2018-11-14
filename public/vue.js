@@ -110,29 +110,30 @@ template: `
 
          <div class="tab-pane fade" id="register-tab" role="tabpanel" aria-labelledby="register-link">
 
-           <form>
-             <div class="form-group">
-     
-               <!-- <label for="exampleInputEmail1">Email address</label> -->
-               <input type="email" class="form-control input-grey" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
-             
-             </div>
-             
-             <div class="form-group">
-               <input type="text" class="form-control input-grey" id="exampleInputPasswor21" placeholder="Nome">
-             </div>
+           <form @submit.prevent="cadastrar">
 
+            <div class="form-group">
+              <input type="text" class="form-control input-grey" v-model="username"  id="name" placeholder="Nome">
+            </div>
+           
              <div class="form-group">
-               <input type="number" class="form-control input-grey" id="exampleInputPass2word1" placeholder="Numero Telefone">
+               <input type="email" class="form-control input-grey" v-model="email" id="email" aria-describedby="emailHelp" placeholder="Digite e-mail">
+             </div>
+             
+            <div class="form-group">
+               <input type="password" class="form-control input-grey" v-model="password" id="password" placeholder="Digite a senha">
             </div>
 
-
              <div class="form-group">
-              <!-- <label for="exampleInputPasswor3d1">Password</label> -->
-               <input type="password" class="form-control input-grey" id="exampleInputPassw3ord1" placeholder="Senha">
-             </div>
+               <input type="password" class="form-control input-grey" v-model="cpassword" id="confirm password" placeholder="Confirme a senha">
+            </div>
+
+            <div class="form-check">
+              <input disabled type="checkbox" class="form-check-input" v-model="isAdmin" id="exampleInputPass2word1" placeholder="Numero Telefone">
+              <label class="form-check-label" >Administrador</label> 
+           </div>
            
-             <button type="submit" class="btn button-grey">Cadastrar-se</button>
+             <button type="submit"  class="btn button-grey">Cadastrar-se</button>
            </form>
 
          </div>
@@ -143,6 +144,64 @@ template: `
 </div>
 </div>
 `,
+data(){
+  return{
+    // requisição 
+    resource: this.$resource('http://localhost:8080/api/users'),
+    usuario: [],
+    errors: [],
+    username : '',
+    email : '',
+    password : '',
+    cpassword : '',
+    isAdmin : '',
+  }
+},
+methods: {
+  
+  cadastrar () {
+    // Validação
+    this.errors = [];
+
+    if (!this.username) {
+      this.errors.push('O Nome é obrigatório.');
+    }
+
+    if (!this.email) {
+      this.errors.push('O email é obrigatório.');
+    }
+    
+    if (!this.password) {
+      this.errors.push('O senha é obrigatório.');
+    }
+
+    if (!this.errors.length) {
+      // Post
+      this.$http.post('http://localhost:8080/api/users', {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        password2: this.cpassword,
+        isAdmin : this.isAdmin
+      }).then(response =>{
+      this.usuario = response.data
+      alert(response.data.success)
+      alert(response.message)
+      console.log(this.usuario)
+      })
+
+      alert('cadastro com sucesso')
+      this.username= ""
+      this.email= ""
+      this.password = ""
+      this.cpassword = ""
+      this.isAdmin = ""
+      return true;
+    }
+  },
+
+
+}
 
 })
 
@@ -341,7 +400,7 @@ Vue.component('cadastrar-imovel',{
       </div>
 
       <div class="form-group">
-      <input type="number" step="0.01" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
+      <input type="text" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
     </div>
 
 <!--      <div class="form-group">
@@ -380,7 +439,6 @@ Vue.component('cadastrar-imovel',{
       if (!this.descricao) {
         this.errors.push('O descricao é obrigatório.');
       }
-
 
       if (!this.preco) {
         this.errors.push('O preco é obrigatório.');
