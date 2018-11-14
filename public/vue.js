@@ -1,7 +1,6 @@
-
-
-// ########## MENU ###############
-
+/*
+ ==================== Menu NavBar =========================
+*/
 Vue.component('menu-header',{
   template : `
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,7 +43,11 @@ var header = new Vue({
  el: '#header',
 
 })
-//  ############### MODAL LOGIN #######################
+
+
+/*
+    ================ Modal, Login and Register =====================
+*/
 
 Vue.component('login-modal',{
 template: `
@@ -75,9 +78,12 @@ template: `
      </div>
      <div class="modal-body body-grey">
 
-     <!--  tabs -->
+     <!--  ================== Tabs ====================== -->
 
        <div class="tab-content" >
+
+       <!-- ================= Login ====================== -->
+
          <div class="tab-pane fade show active" id="login-tab">
              <!-- Form login -->
            <form>
@@ -100,6 +106,7 @@ template: `
 
          </div>
       
+        <!-- ============================= Register =================================== -->
 
          <div class="tab-pane fade" id="register-tab" role="tabpanel" aria-labelledby="register-link">
 
@@ -135,7 +142,8 @@ template: `
  </div>
 </div>
 </div>
-`
+`,
+
 })
 
 var loginModal = new Vue({
@@ -200,9 +208,12 @@ el: '#descHouse',
 
 
 
-// ####################################################
 
-// Buscar casa
+
+/*
+    --------------Buscar imoveis-------------------
+    ----------------Get imoveis -------------------
+*/
 
 Vue.component('input-busca',{
   template: `
@@ -237,7 +248,10 @@ var inputBusca = new Vue({
  })
 
 
-// Listam Casa 
+/*
+  ======================= Listagem de imoveis ========================
+  ============================ Get / buscar ==========================
+*/
 
 //  GET / Buscar
 Vue.component('card-house',{
@@ -296,6 +310,9 @@ var loginModal = new Vue({
 
 
 //  Post / Cadastrar 
+/*
+====================== Post / Cadastrar ========================
+*/
 Vue.component('cadastrar-imovel',{
   template: `
     <form ref="form" @submit.prevent="handleSubmit">
@@ -399,7 +416,9 @@ var cadastrarImovel = new Vue({
 el: '#cadastrarImovel',
 })
 
-// ## Deletar 
+/*
+====================== Delete / Deletar imoveis ===========================
+*/
 
 Vue.component('deletar-imovel',{
   template: ` 
@@ -444,4 +463,8 @@ Vue.component('deletar-imovel',{
 var deletarImovel = new Vue({
   el: '#deletarImovel',
   })
+
+/*
+ ==================== Login =====================
+*/
 
