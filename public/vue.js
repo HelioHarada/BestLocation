@@ -107,7 +107,14 @@ template: `
          </div>
       
         <!-- ============================= Register =================================== -->
-
+        <div class="alert alert-danger" role="alert"  v-if="errors.length" >
+          <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+          <ul>
+            <li v-for="error in errors">{{ error }}</li>
+          </ul>
+        </div>
+  
+        
          <div class="tab-pane fade" id="register-tab" role="tabpanel" aria-labelledby="register-link">
 
            <form @submit.prevent="cadastrar">
@@ -125,7 +132,7 @@ template: `
             </div>
 
              <div class="form-group">
-               <input type="password" class="form-control input-grey" v-model="cpassword" id="confirm password" placeholder="Confirme a senha">
+               <input type="password" class="form-control input-grey" v-model="password2" id="confirm password" placeholder="Confirme a senha">
             </div>
 
             <div class="form-check">
@@ -153,8 +160,8 @@ data(){
     username : '',
     email : '',
     password : '',
-    cpassword : '',
-    isAdmin : '',
+    password2 : '',
+    isAdmin : 'false',
   }
 },
 methods: {
@@ -162,7 +169,7 @@ methods: {
   cadastrar () {
     // Validação
     this.errors = [];
-
+    
     if (!this.username) {
       this.errors.push('O Nome é obrigatório.');
     }
@@ -175,13 +182,18 @@ methods: {
       this.errors.push('O senha é obrigatório.');
     }
 
+    if(this.password != this.password2){
+      this.errors.push('senha não correspodem')
+      console.log("erro password")
+    }
+
     if (!this.errors.length) {
       // Post
       this.$http.post('http://localhost:8080/api/users', {
         username: this.username,
         email: this.email,
         password: this.password,
-        password2: this.cpassword,
+        password2: this.password2,
         isAdmin : this.isAdmin
       }).then(response =>{
       this.usuario = response.data
@@ -189,12 +201,11 @@ methods: {
       alert(response.message)
       console.log(this.usuario)
       })
-
-      alert('cadastro com sucesso')
+      $('#login-modal').modal('hide');
       this.username= ""
       this.email= ""
       this.password = ""
-      this.cpassword = ""
+      this.password2 = ""
       this.isAdmin = ""
       return true;
     }
@@ -377,11 +388,11 @@ Vue.component('cadastrar-imovel',{
     <form ref="form" @submit.prevent="handleSubmit">
 
     <div class="alert alert-danger" role="alert"  v-if="errors.length" >
-    <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-  </div>
+      <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+   </div>
 
     <h2 align="center">Cadastrar Ímovel</h2>
 
