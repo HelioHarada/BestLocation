@@ -197,9 +197,7 @@ methods: {
         isAdmin : this.isAdmin
       }).then(response =>{
       this.usuario = response.data
-      alert(response.data.success)
-      alert(response.message)
-      console.log(this.usuario)
+   
       })
       $('#login-modal').modal('hide');
       this.username= ""
