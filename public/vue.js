@@ -29,6 +29,7 @@ Vue.component('menu-header',{
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
+          <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
           <a class="dropdown-item" href="deletar.html">Deletar</a>
    
         </div>
@@ -510,7 +511,7 @@ Vue.component('deletar-imovel',{
     // Função deletar
     deletar(){
         id = this.id
-       
+        
         url = 'http://localhost:8080/api/imoveis/'+id
         console.log(url)
       this.$http.delete(url).then((response) => {
@@ -535,3 +536,131 @@ var deletarImovel = new Vue({
  ==================== Login =====================
 */
 
+Vue.component('listar-usuario',{
+  template: ` 
+ <div class="row " >
+ <table class="table">
+ <thead>
+   <tr>
+     <th scope="col">#</th>
+     <th scope="col">Name</th>
+     <th scope="col">E-mail</th>
+     <th scope="col">id</th>
+     <th scope="col">Admin</th>
+     <th scope="col">Deletar</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr v-for="(usuario, index) in usuarios">
+     <th scope="row">{{index}}</th>
+     <td>{{usuario.username}}</td>
+     <td>{{usuario.email}}</td>
+     <td>{{usuario._id}}</td>
+     <td>{{usuario.isAdmin}}</td>
+     <td><button  data-toggle="modal"  @click="deletarUser(usuario._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button></td>
+   </tr>
+
+ </tbody>
+</table>
+ </div>
+    
+  `,
+  data(){
+    return{
+      resource: this.$resource('http://localhost:8080/api/users'),
+      usuarios: []
+    }
+  },
+   methods: {
+
+     iniciar(){
+       this.resource.get({}).then((response) =>{
+         this.usuarios = response.data
+         console.log(response.data)
+       })
+     },
+     deletarUser(id){
+      console.log(id)
+     
+      url = 'http://localhost:8080/api/users/'+id
+      console.log(url)
+      
+    this.$http.delete(url).then((response) => {
+      location.reload();
+    }, response =>{
+      id = ''
+      console.log("Erro ao deletar!");
+      alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
+    })
+    this.id = ""
+    listaUsuario.$forceUpdate();
+  }
+   },
+   created(){
+    console.log(typeof(count))
+     this.iniciar()
+   }
+
+   
+ })
+ 
+ var listaUsuario = new Vue({
+  el: '#listarUsuario',
+ })
+
+
+/*
+================= Modal confirm Delete =======================
+*/
+
+
+
+Vue.component('delete-confirm',{
+  template: `
+  
+  <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" >
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLongTitle">Descrição</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+        <h3>deletetar</h3>
+       </div>
+       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  @click="deletarUser(usuario._id)">Save changes</button>
+     </div>
+     </div>
+   </div>
+  </div>
+  `,
+  data(){
+    return{
+      
+      resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+      imoveis: []
+    }
+  },
+   methods: {
+  
+     iniciar(){
+       this.resource.get({}).then((response) =>{
+         this.imoveis = response.data[2]
+       
+       })
+     }
+   },
+   created(){
+     this.iniciar()
+   }
+   
+  })
+  
+  var descModal = new Vue({
+  el: '#place-delete-modal',
+  
+  })
