@@ -26,11 +26,11 @@ imovelController.deleteImovel = (req, res) => {
     modelImovel.findByIdAndRemove(req.params.imovel_id, (err, imovel) => {
         if (err) return res.status(500).send(err);
 
-            const response = {
-                message : "Imovel removido com sucesso",
-                id: imovel.id
-            };
-            return res.status(200).send(response);
+        const response = {
+            message: "Imovel removido com sucesso",
+            id: imovel.id
+        };
+        return res.status(200).send(response);
     });
 }
 
@@ -38,32 +38,32 @@ imovelController.updateImovel = (req, res) => {
     const id = req.params.imovel_id;
 
     modelImovel.findById(id, (err, imovel) => {
-    if(err) {
-        res.status(500).json({
-            message: "Erro ao encontrar o imóvel: ID incorreto"
-        });
-    }
-    else if (imovel == null) {
-        res.status(400).json({
-            message: "Imóvel não encontrado"
-        });
-    }
-    else {
-        imovel.titulo = req.body.titulo;
-        imovel.descricao = req.body.descricao;
-        imovel.endereco = req.body.endereco;
-        imovel.preco = req.body.preco;
-
-        imovel.save(function (error) {
-            if (error)
-                res.send("Erro ao atualizar o imóvel: " + error);
-
-            res.status(200).json({
-                message: "Imóvel atualizado com sucesso"
+        if (err) {
+            res.status(500).json({
+                message: "Erro ao encontrar o imóvel: ID incorreto"
             });
-        });
-    }
-});
+        }
+        else if (imovel == null) {
+            res.status(400).json({
+                message: "Imóvel não encontrado"
+            });
+        }
+        else {
+            imovel.titulo = req.body.titulo;
+            imovel.descricao = req.body.descricao;
+            imovel.endereco = req.body.endereco;
+            imovel.preco = req.body.preco;
+
+            imovel.save(function (error) {
+                if (error)
+                    res.send("Erro ao atualizar o imóvel: " + error);
+
+                res.status(200).json({
+                    message: "Imóvel atualizado com sucesso"
+                });
+            });
+        }
+    });
 }
 
 imovelController.newImovel = (req, res) => {
