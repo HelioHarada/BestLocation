@@ -320,3 +320,11 @@ body{
 .card-house{
     margin-bottom: 75px;
 }
+
+/* Delete user */
+
+.icon-delete{
+    margin-left: 15px;
+
+    color:white;
+}
