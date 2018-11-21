@@ -167,6 +167,9 @@ body{
     background-repeat: no-repeat;
     align-items: center;
 }
+.cardHouse{
+    margin-left: 30px;
+}
 
 .form-login{
     margin-top: 50px;
@@ -268,6 +271,19 @@ body{
     text-align: center;
 }
 
+.button-plus{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    background-color: #ff7f00;
+    color:white!important;
+}
+
+.button-plus:hover{
+    background-color:#ff8915;
+    border: 1px solid #ccc;
+}
+
 .button-grey{
     margin-bottom: 15px;
     border-radius: 25px;
@@ -276,7 +292,12 @@ body{
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
-    background-color: #00b147;
+    background-color: #ff7f00;
+    color:white;
+}
+
+.button-grey:hover{
+    background-color:#ff8915;
 }
 
 .button-delete{

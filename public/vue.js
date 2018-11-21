@@ -61,14 +61,14 @@ template: `
        <nav>
          <div class="nav nav-tabs" id="nav-tab" role="tablist">
              <a href="#login-tab" id="login-link" data-toggle="tab" class="nav-item nav-link active" role="tab" aria-selected="true">Login</a>
-             <a href="#register-tab" id="register-link" data-toggle="tab" class="nav-item nav-link" role="tab" aria-selected="true">register</a>
+             <a href="#register-tab" id="register-link" data-toggle="tab" class="nav-item nav-link" role="tab" aria-selected="true">Cadastrar</a>
 
              <!-- <ul class="nav nav-tabs">
                  <li class="nav-item">
                    <a href="#login-tab" id="login-link" data-toggle="tab" class="nav-link active" role="tab" aria-selected="true">Login</a>
                  </li>
                  <li class="nav-item">
-                   <a href="#register-tab" id="register-link" data-toggle="tab" class="nav-link" role="tab" aria-selected="true">register</a>
+                   <a href="#register-tab" id="register-link" data-toggle="tab" class="nav-link" role="tab" aria-selected="true">Cadastrar</a>
                  </li>
                </ul> -->
          </div>
@@ -135,12 +135,12 @@ template: `
              <div class="form-group">
                <input type="password" class="form-control input-grey" v-model="password2" id="confirm password" placeholder="Confirme a senha">
             </div>
-
+            <!-- 
             <div class="form-check">
               <input disabled type="checkbox" class="form-check-input" v-model="isAdmin" id="exampleInputPass2word1" placeholder="Numero Telefone">
-              <label class="form-check-label" >Administrador</label> 
+             <label class="form-check-label" >Administrador</label>
            </div>
-           
+           -->
              <button type="submit"  class="btn button-grey">Cadastrar-se</button>
            </form>
 
@@ -241,7 +241,7 @@ template: `
      <p class="card-text">descrição: {{imoveis.descricao}}</p>
      <p class="card-text">Endereço: {{imoveis.endereco}}</p>
      <p class="card-text">id: {{imoveis._id}}</p>
-     <a class="btn btn-primary"   data-toggle="modal" data-target="#desc-modal" >Mais+</a>  
+     <a class="btn button-plus"   data-toggle="modal" data-target="#desc-modal" >Mais+</a>  
      </div>
 
    </div>
@@ -288,8 +288,8 @@ Vue.component('input-busca',{
   template: `
   <form>
   <div class="place-input">
-    <input v-model="id" class="input-principal">
-    <button @click.prevent="getId(id)" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
+    <input v-model="id" placeholder="Digite a cidade..." class="input-principal">
+    <button @click.prevent="getId(id)" onclick="window.location.href='lista.html'" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
   </div>
 </form>`,
 data(){
@@ -335,7 +335,7 @@ Vue.component('card-house',{
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
          <p class="card-text">Preço: {{imovel.preco}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
-         <a class="btn btn-primary" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
+         <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
          
         </div>
@@ -406,7 +406,7 @@ Vue.component('cadastrar-imovel',{
     </div>
 
     <div class="form-group">
-        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="descrição do Imovel">
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Descrição do Imovel">
       </div>
 
       <div class="form-group">
