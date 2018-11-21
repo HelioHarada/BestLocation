@@ -1,3 +1,5 @@
+var urlApi = 'http://localhost:8080/api/'
+
 /*
  ==================== Menu NavBar =========================
 */
@@ -251,7 +253,7 @@ template: `
 data(){
   return{
     
-    resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+    resource: this.$resource(urlApi+'imoveis{id}'),
     imoveis: []
   }
 },
@@ -294,7 +296,7 @@ Vue.component('input-busca',{
 </form>`,
 data(){
   return{
-    resource: this.$resource('http://localhost:8080/api/imoveis'),
+    resource: this.$resource(urlApi+'imoveis'),
     
     id : '',
     imoveis: []
@@ -346,8 +348,7 @@ Vue.component('card-house',{
  `,
  data(){
    return{
-  
-     resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+     resource: this.$resource(urlApi+'imoveis{/id}'),
    
      imoveis: []
    }
@@ -357,10 +358,11 @@ Vue.component('card-house',{
       id = this.id
       this.resource.get({}).then((response) =>{
         this.idImovel = response.data
-        console.log(id)
+        console.log("esse é o id "+ id)
       })
      },
     iniciar(){
+     
       this.resource.get({}).then((response) =>{
         this.imoveis = response.data
         console.log(response.data)
@@ -423,7 +425,7 @@ Vue.component('cadastrar-imovel',{
   data(){
     return{
       // requisição 
-      resource: this.$resource('http://localhost:8080/api/imoveis'),
+      resource: this.$resource(urlApi+'imoveis'),
       imoveis: [],
       errors: [],
       titulo : '',
@@ -455,7 +457,7 @@ Vue.component('cadastrar-imovel',{
       }
       if (!this.errors.length) {
         // Post
-        this.$http.post('http://localhost:8080/api/imoveis', {
+        this.$http.post(urlApi+'imoveis', {
           titulo: this.titulo,
           endereco: this.endereco,
           descricao: this.descricao,
@@ -502,7 +504,7 @@ Vue.component('deletar-imovel',{
   data(){
     return{
  
-      resource: this.$resource('http://localhost:8080/api/imoveis'),
+      resource: this.$resource(urlApi+'imoveis'),
       imoveis: [],
       id : ''
     }
@@ -567,7 +569,7 @@ Vue.component('listar-usuario',{
   `,
   data(){
     return{
-      resource: this.$resource('http://localhost:8080/api/users'),
+      resource: this.$resource(urlApi+'users'),
       usuarios: []
     }
   },
