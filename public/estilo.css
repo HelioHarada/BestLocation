@@ -184,6 +184,20 @@ body{
 
 /* POPUP GREY */
 
+
+@media screen and (max-width: 990px){
+    .dialog-grey{
+        width: auto;
+    }
+
+    .content-grey{
+        position: relative;
+        width: auto;
+    }
+}
+
+
+
 /* position popup */
 .modal-grey{
     padding-top:115px;
