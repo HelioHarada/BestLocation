@@ -192,7 +192,7 @@ methods: {
 
     if (!this.errors.length) {
       // Post
-      this.$http.post('http://localhost:8080/api/users', {
+      this.$http.post(urlApi+'users', {
         username: this.username,
         email: this.email,
         password: this.password,
@@ -349,16 +349,15 @@ Vue.component('card-house',{
  data(){
    return{
      resource: this.$resource(urlApi+'imoveis{/id}'),
-   
      imoveis: []
    }
  },
   methods: {
     getId(id){
-      id = this.id
+      console.log("esse é o id "+ id)
       this.resource.get({}).then((response) =>{
         this.idImovel = response.data
-        console.log("esse é o id "+ id)
+       
       })
      },
     iniciar(){
@@ -492,15 +491,40 @@ el: '#cadastrarImovel',
 
 Vue.component('deletar-imovel',{
   template: ` 
-  <form ref="form" >
-  <h2 align="center">Deletar Ímovel</h2>
-    <div class="form-group">
-      <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
-    </div>
-
-   
-    <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
-  </form>`,
+  <div>
+      <form ref="form" >
+        <h2 align="center">Deletar Ímovel</h2>
+          <div class="form-group">
+            <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
+          </div>
+          <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
+      </form>
+      <hr>
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Endereço</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(imovel, index) in imoveis">
+          <th scope="row">{{index}}</th>
+          <td>{{imovel.titulo}}</td>
+          <td>{{imovel.descricao}}</td>
+          <td>{{imovel.endereco}}</td>
+          <td>{{imovel.preco}}</td>
+          <td>{{imovel._id}}</td>
+          <td><button  data-toggle="modal"  @click="deletarImovel(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button></td>
+        </tr>
+    
+      </tbody>
+    </table>
+  </div>`,
   data(){
     return{
  
@@ -510,6 +534,28 @@ Vue.component('deletar-imovel',{
     }
   },
   methods:{
+    iniciar(){
+      this.resource.get({}).then((response) =>{
+        this.imoveis = response.data
+        console.log(response.data)
+      })
+    },
+    deletarImovel(id){
+      console.log(id)
+     
+      url = 'http://localhost:8080/api/imoveis/'+id
+      console.log(url)
+      
+    this.$http.delete(url).then((response) => {
+      location.reload();
+    }, response =>{
+      id = ''
+      console.log("Erro ao deletar!");
+      alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
+    })
+    this.id = ""
+    listaUsuario.$forceUpdate();
+  },
     // Função deletar
     deletar(){
         id = this.id
@@ -526,7 +572,11 @@ Vue.component('deletar-imovel',{
       })
       this.id = ""
     }
-  }
+  },
+  created(){
+    console.log(typeof(count))
+     this.iniciar()
+   }
 })
 
 
@@ -609,6 +659,10 @@ Vue.component('listar-usuario',{
  var listaUsuario = new Vue({
   el: '#listarUsuario',
  })
+
+
+
+
 
 
 /*
