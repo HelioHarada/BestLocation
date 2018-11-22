@@ -21,7 +21,7 @@ Vue.component('menu-header',{
         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="lista.html">Lista de Imóveis2</a>
+        <a class="nav-link" href="lista.html">Lista de Imóveis</a>
       </li>
       <li class="nav-item">
           <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" >Login</a>
