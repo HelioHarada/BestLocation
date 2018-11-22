@@ -1,6 +1,8 @@
-// var urlApi = 'http://localhost:8080/api/'
-var urlApi = 'https://bestlocation.herokuapp.com/api/'
+var urlApi = 'http://localhost:8080/api/'
+// var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
+// Função global
+var eventBus = new Vue();
 /*
  ==================== Menu NavBar =========================
 */
@@ -47,7 +49,6 @@ var header = new Vue({
  el: '#header',
 
 })
-
 
 /*
     ================ Modal, Login and Register =====================
@@ -224,7 +225,7 @@ el: '#placemodal',
 })
 
 
-// ##### Modal Descricao House, desc-casa ################# // 
+// ##### Modal Descricao casa, desc-casa ################# // 
 
 
 Vue.component('desc-house',{
@@ -240,11 +241,12 @@ template: `
        </button>
      </div>
      <div class="modal-body">
-     <h5 class="card-title">{{imoveis.titulo}}</h5>
+     <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
+     <h5 class="card-title">titulo: {{imoveis.titulo}}</h5>
      <p class="card-text">descrição: {{imoveis.descricao}}</p>
      <p class="card-text">Endereço: {{imoveis.endereco}}</p>
-     <p class="card-text">id: {{imoveis._id}}</p>
-     <a class="btn button-plus"   data-toggle="modal" data-target="#desc-modal" >Mais+</a>  
+     <p class="card-text">Preço: {{imoveis.preco}}</p>
+     
      </div>
 
    </div>
@@ -253,23 +255,31 @@ template: `
 `,
 data(){
   return{
-    
-    resource: this.$resource(urlApi+'imoveis{id}'),
+    global: '',
+    id: '',
+    resource: this.$resource(urlApi+'imoveis/{_id}'),
     imoveis: []
   }
 },
  methods: {
+   
+  iniciar: function(){
+    let self = this;
+    eventBus.$on('getId', function(id){
+      this.id = id
 
-   iniciar(){
-     this.resource.get({}).then((response) =>{
-       this.imoveis = response.data[2]
-     
-     })
+      this.$http.get(urlApi+'imoveis/'+this.id).then(response => {
+        self.imoveis = response.data
+        console.log(self.imoveis) // Recebe os dados corretamente
+      })
+      console.log(self.imoveis) // Dados undefined
+    })
+ 
    }
  },
- created(){
-   this.iniciar()
- }
+  created(){
+    this.iniciar()
+  }
  
 })
 
@@ -333,7 +343,7 @@ Vue.component('card-house',{
     <div class="card" style="width: 300px;">
        <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
        <div class="card-body">
-         <h5 class="card-title">{{imovel.titulo}}</h5>
+         <h5 class="card-title" >{{imovel.titulo}}</h5>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
          <p class="card-text">Preço: {{imovel.preco}}</p>
@@ -350,12 +360,15 @@ Vue.component('card-house',{
  data(){
    return{
      resource: this.$resource(urlApi+'imoveis{/id}'),
-     imoveis: []
+     imoveis: [],
+     id : ''
    }
  },
   methods: {
     getId(id){
-      console.log("esse é o id "+ id)
+      this.id = id
+      // console.log("esse é o id "+ this.id)
+      eventBus.$emit('getId', this.id)
       this.resource.get({}).then((response) =>{
         this.idImovel = response.data
        
@@ -374,6 +387,8 @@ Vue.component('card-house',{
   }
   
 })
+
+
 
 var loginModal = new Vue({
  el: '.cardHouse',
@@ -661,10 +676,6 @@ Vue.component('listar-usuario',{
  var listaUsuario = new Vue({
   el: '#listarUsuario',
  })
-
-
-
-
 
 
 /*
