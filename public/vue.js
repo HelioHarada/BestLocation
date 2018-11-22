@@ -1,5 +1,5 @@
-var urlApi = 'http://localhost:8080/api/'
-// var urlApi = 'https://bestlocation.herokuapp.com/api/'
+// var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -255,7 +255,7 @@ template: `
 `,
 data(){
   return{
-    global: '',
+
     id: '',
     resource: this.$resource(urlApi+'imoveis/{_id}'),
     imoveis: []
@@ -270,9 +270,9 @@ data(){
 
       this.$http.get(urlApi+'imoveis/'+this.id).then(response => {
         self.imoveis = response.data
-        console.log(self.imoveis) // Recebe os dados corretamente
+      
       })
-      console.log(self.imoveis) // Dados undefined
+      
     })
  
    }
@@ -315,8 +315,7 @@ data(){
 },  
 methods: {
   getId(id){
-    
-    console.log(id)
+
     this.resource.get({}).then((response) =>{
       this.imoveis = response.data
       console.log(response.data)
