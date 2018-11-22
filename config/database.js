@@ -2,11 +2,12 @@
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-const url = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://localhost/bdBestLocation'
-module.exports = mongoose.connect(url, { useNewUrlParser: true })
+const url = process.env.MONGOLAB_URI;
+console.log(url);
+mongoose.connect('mongodb://bestadmin:Admin1@ds053449.mlab.com:53449/heroku_kmb7qhcw', { useNewUrlParser: true })
 
 // conexão no banco
-//mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } ); .
+//mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } );
 
 // ouvindo eventos que ocorrem em sucesso ou erro de conexão
 mongoose.connection.on('connected', () => {

@@ -1,4 +1,5 @@
-var urlApi = 'http://localhost:8080/api/'
+//var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 /*
  ==================== Menu NavBar =========================
@@ -20,7 +21,7 @@ Vue.component('menu-header',{
         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="lista.html">Lista de Imóveis</a>
+        <a class="nav-link" href="lista.html">Lista de Imóveis2</a>
       </li>
       <li class="nav-item">
           <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" >Login</a>
@@ -157,7 +158,7 @@ template: `
 data(){
   return{
     // requisição 
-    resource: this.$resource('http://localhost:8080/api/users'),
+    resource: this.$resource(urlApi +'users'),
     usuario: [],
     errors: [],
     username : '',
@@ -697,7 +698,7 @@ Vue.component('delete-confirm',{
   data(){
     return{
       
-      resource: this.$resource('http://localhost:8080/api/imoveis{/id}'),
+      resource: this.$resource(urlApi +'imoveis{/id}'),
       imoveis: []
     }
   },
