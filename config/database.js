@@ -6,7 +6,7 @@ const url = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://loc
 module.exports = mongoose.connect(url, { useNewUrlParser: true })
 
 // conexão no banco
-//mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } );
+//mongoose.connect('mongodb://localhost/bdBestLocation', { useNewUrlParser: true } ); .
 
 // ouvindo eventos que ocorrem em sucesso ou erro de conexão
 mongoose.connection.on('connected', () => {
