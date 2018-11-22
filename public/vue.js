@@ -635,7 +635,7 @@ Vue.component('listar-usuario',{
      deletarUser(id){
       console.log(id)
      
-      url = 'http://localhost:8080/api/users/'+id
+      url = urlApi+id
       console.log(url)
       
     this.$http.delete(url).then((response) => {
