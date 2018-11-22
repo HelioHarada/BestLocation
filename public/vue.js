@@ -1,4 +1,4 @@
-//var urlApi = 'http://localhost:8080/api/'
+// var urlApi = 'http://localhost:8080/api/'
 var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 /*
@@ -544,7 +544,7 @@ Vue.component('deletar-imovel',{
     deletarImovel(id){
       console.log(id)
      
-      url = 'http://localhost:8080/api/imoveis/'+id
+      url = urlApi+'imoveis/'+id
       console.log(url)
       
     this.$http.delete(url).then((response) => {
