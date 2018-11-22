@@ -1,4 +1,5 @@
-var urlApi = 'http://localhost:8080/api/'
+//var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 /*
  ==================== Menu NavBar =========================
