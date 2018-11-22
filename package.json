@@ -31,6 +31,9 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4"
   },
+  "engines": {
+    "node": "^8.11.1"
+  },
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
