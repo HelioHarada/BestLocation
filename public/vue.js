@@ -586,7 +586,7 @@ var deletarImovel = new Vue({
   })
 
 /*
- ==================== Login =====================
+ ==================== Listar usuario/ Get Usuario =====================
 */
 
 Vue.component('listar-usuario',{
@@ -632,10 +632,11 @@ Vue.component('listar-usuario',{
          console.log(response.data)
        })
      },
+    //  Deletar usuario
      deletarUser(id){
       console.log(id)
      
-      url = 'http://localhost:8080/api/users/'+id
+      url = urlApi+'users/'+id
       console.log(url)
       
     this.$http.delete(url).then((response) => {
