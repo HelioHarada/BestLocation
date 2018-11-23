@@ -1,5 +1,5 @@
-// var urlApi = 'http://localhost:8080/api/'
-var urlApi = 'https://bestlocation.herokuapp.com/api/'
+var urlApi = 'http://localhost:8080/api/'
+// var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -11,7 +11,7 @@ Vue.component('menu-header',{
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- Logo -->
   <a class="navbar-brand" href="index.html">
-     <img class="img-logo" src="img/logo.png">
+     <img class="img-logo" src="img/Logobranca.png">
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

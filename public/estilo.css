@@ -152,12 +152,13 @@ body{
 } */
 
 .bannerDefault{
-    background-color: grey;
-    /* width: 80%; */
-    /* margin-left: 10%; */
-  
-    margin-bottom: 40px;
-    height: 100px;
+    margin-bottom: 50px;
+    padding: 0px;
+}
+
+.img-bannerDefault{
+    width: 100%;
+    height: auto;
 }
 
 .banner{
