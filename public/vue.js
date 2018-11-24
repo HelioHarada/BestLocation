@@ -1,5 +1,5 @@
-// var urlApi = 'http://localhost:8080/api/'
-var urlApi = 'https://bestlocation.herokuapp.com/api/'
+var urlApi = 'http://localhost:8080/api/'
+// var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -341,8 +341,8 @@ Vue.component('card-house',{
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
     <div class="card" style="width: 300px;">
        <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
-       <div class="card-body">
-         <h5 class="card-title" >{{imovel.titulo}}</h5>
+       <div class="card-body card-imovel">
+         <h6 class="card-title" >{{imovel.titulo}}</h>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
          <p class="card-text">Preço: {{imovel.preco}}</p>
