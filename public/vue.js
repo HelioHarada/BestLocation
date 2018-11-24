@@ -339,13 +339,12 @@ Vue.component('card-house',{
  template: ` 
 <div class="row content-lista" >
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
-    <div class="card" style="width: 300px;">
+    <div class="card" style="width: 350px;">
        <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
        <div class="card-body card-imovel">
-         <h6 class="card-title" >{{imovel.titulo}}</h>
+         <h6 class="card-title" >{{imovel.titulo}} R$: {{imovel.preco}}</h6>
          <p class="card-text">descrição: {{imovel.descricao}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}}</p>
-         <p class="card-text">Preço: {{imovel.preco}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
@@ -394,9 +393,9 @@ var loginModal = new Vue({
 })
 
 
-//  Post / Cadastrar 
+
 /*
-====================== Post / Cadastrar ========================
+====================== Post / Cadastrar imovel ========================
 */
 Vue.component('cadastrar-imovel',{
   template: `
@@ -412,7 +411,7 @@ Vue.component('cadastrar-imovel',{
     <h2 align="center">Cadastrar Ímovel</h2>
 
     <div class="form-group">
-      <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Digite o titulo do imovel">
+      <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Digite o tipo da venda (Venda, Aluguel)">
     </div>
 
 

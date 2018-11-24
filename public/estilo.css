@@ -338,10 +338,16 @@ body{
     padding:10px 0px 0px 5px;
 }
 
+.card-imovel h6{
+    font-weight: 300px;
+}
+
 .card-imovel p{
     margin-bottom: 5px;
     font-size: 14px;
 }
+
+
 /* Delete user */
 
 .icon-delete{
