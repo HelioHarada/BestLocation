@@ -421,7 +421,7 @@ Vue.component('cadastrar-imovel',{
     </div>
 
     <div class="form-group">
-        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Descrição do Imovel">
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Descrição do Imovel (2 quartos, 2 banheiro, sala, cozinha etc..">
       </div>
 
       <div class="form-group">
