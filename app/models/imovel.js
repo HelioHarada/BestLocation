@@ -14,7 +14,23 @@ const imovelSchema = new Schema ({
         type: String,
         default: ''
     },
+    cidade: {
+        type: String,
+        default: ''
+    },
+    numQuartos: {
+        type: Number,
+        default: ''
+    },
+    numBanheiros: {
+        type: Number,
+        default: ''
+    },
     descricao: {
+        type: String,
+        default: ''
+    },
+    status: {
         type: String,
         default: ''
     },

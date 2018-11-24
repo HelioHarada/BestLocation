@@ -1,13 +1,13 @@
-// var urlApi = 'http://localhost:8080/api/'
-var urlApi = 'https://bestlocation.herokuapp.com/api/'
+var urlApi = 'http://localhost:8080/api/'
+//var urlApi = 'https://bestlocation.herokuapp.com/api/'
 
 // Função global
 var eventBus = new Vue();
 /*
  ==================== Menu NavBar =========================
 */
-Vue.component('menu-header',{
-  template : `
+Vue.component('menu-header', {
+  template: `
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- Logo -->
   <a class="navbar-brand" href="index.html">
@@ -46,7 +46,7 @@ Vue.component('menu-header',{
 })
 
 var header = new Vue({
- el: '#header',
+  el: '#header',
 
 })
 
@@ -54,8 +54,8 @@ var header = new Vue({
     ================ Modal, Login and Register =====================
 */
 
-Vue.component('login-modal',{
-template: `
+Vue.component('login-modal', {
+  template: `
 <div id="login">
 <div class="modal modal-grey fade" id="login-modal" tabindex="-1" role="dialog">
  <div class="modal-dialog" role="document">
@@ -156,71 +156,71 @@ template: `
 </div>
 </div>
 `,
-data(){
-  return{
-    // requisição 
-    resource: this.$resource(urlApi +'users'),
-    usuario: [],
-    errors: [],
-    username : '',
-    email : '',
-    password : '',
-    password2 : '',
-    isAdmin : 'false',
-  }
-},
-methods: {
-  
-  cadastrar () {
-    // Validação
-    this.errors = [];
-    
-    if (!this.username) {
-      this.errors.push('O Nome é obrigatório.');
-    }
-
-    if (!this.email) {
-      this.errors.push('O email é obrigatório.');
-    }
-    
-    if (!this.password) {
-      this.errors.push('O senha é obrigatório.');
-    }
-
-    if(this.password != this.password2){
-      this.errors.push('senha não correspodem')
-      console.log("erro password")
-    }
-
-    if (!this.errors.length) {
-      // Post
-      this.$http.post(urlApi+'users', {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        password2: this.password2,
-        isAdmin : this.isAdmin
-      }).then(response =>{
-      this.usuario = response.data
-   
-      })
-      $('#login-modal').modal('hide');
-      this.username= ""
-      this.email= ""
-      this.password = ""
-      this.password2 = ""
-      this.isAdmin = ""
-      return true;
+  data() {
+    return {
+      // requisição 
+      resource: this.$resource(urlApi + 'users'),
+      usuario: [],
+      errors: [],
+      username: '',
+      email: '',
+      password: '',
+      password2: '',
+      isAdmin: 'false',
     }
   },
+  methods: {
+
+    cadastrar() {
+      // Validação
+      this.errors = [];
+
+      if (!this.username) {
+        this.errors.push('O Nome é obrigatório.');
+      }
+
+      if (!this.email) {
+        this.errors.push('O email é obrigatório.');
+      }
+
+      if (!this.password) {
+        this.errors.push('O senha é obrigatório.');
+      }
+
+      if (this.password != this.password2) {
+        this.errors.push('senha não correspodem')
+        console.log("erro password")
+      }
+
+      if (!this.errors.length) {
+        // Post
+        this.$http.post(urlApi + 'users', {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          password2: this.password2,
+          isAdmin: this.isAdmin
+        }).then(response => {
+          this.usuario = response.data
+
+        })
+        $('#login-modal').modal('hide');
+        this.username = ""
+        this.email = ""
+        this.password = ""
+        this.password2 = ""
+        this.isAdmin = ""
+        return true;
+      }
+    },
 
 
-}
+  }
 
 })
 
 var loginModal = new Vue({
-el: '#placemodal',
+  el: '#placemodal',
 
 })
 
@@ -228,24 +228,24 @@ el: '#placemodal',
 // ##### Modal Descricao casa, desc-casa ################# // 
 
 
-Vue.component('desc-house',{
-template: `
+Vue.component('desc-house', {
+  template: `
 
 <div class="modal fade" id="desc-modal" tabindex="-1" role="dialog" >
  <div class="modal-dialog" role="document">
    <div class="modal-content">
      <div class="modal-header">
-       <h5 class="modal-title" id="exampleModalLongTitle">Descrição</h5>
+       <h2 class="modal-title" id="exampleModalLongTitle">{{imoveis.titulo}}</h2>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
        </button>
      </div>
      <div class="modal-body">
      <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
-     <h5 class="card-title">titulo: {{imoveis.titulo}}</h5>
-     <p class="card-text">descrição: {{imoveis.descricao}}</p>
-     <p class="card-text">Endereço: {{imoveis.endereco}}</p>
-     <p class="card-text">Preço: {{imoveis.preco}}</p>
+     <p class="card-text">Descrição: {{imoveis.descricao}}</p>
+     <p class="card-text">Quartos: {{imoveis.numQuartos}} / Banheiros: {{imoveis.numBanheiros}}</p>
+     <p class="card-text">Endereço: {{imoveis.endereco}} - {{imoveis.cidade}}</p>
+     <p class="card-text">{{imoveis.status}}: R$ {{imoveis.preco}}</p>
      
      </div>
 
@@ -253,38 +253,38 @@ template: `
  </div>
 </div>
 `,
-data(){
-  return{
+  data() {
+    return {
 
-    id: '',
-    resource: this.$resource(urlApi+'imoveis/{_id}'),
-    imoveis: []
-  }
-},
- methods: {
-   
-  iniciar: function(){
-    let self = this;
-    eventBus.$on('getId', function(id){
-      this.id = id
+      id: '',
+      resource: this.$resource(urlApi + 'imoveis/{_id}'),
+      imoveis: []
+    }
+  },
+  methods: {
 
-      this.$http.get(urlApi+'imoveis/'+this.id).then(response => {
-        self.imoveis = response.data
-      
+    iniciar: function () {
+      let self = this;
+      eventBus.$on('getId', function (id) {
+        this.id = id
+
+        this.$http.get(urlApi + 'imoveis/' + this.id).then(response => {
+          self.imoveis = response.data
+
+        })
+
       })
-      
-    })
- 
-   }
- },
-  created(){
+
+    }
+  },
+  created() {
     this.iniciar()
   }
- 
+
 })
 
 var descModal = new Vue({
-el: '#descHouse',
+  el: '#descHouse',
 
 })
 
@@ -297,7 +297,7 @@ el: '#descHouse',
     ----------------Get imoveis -------------------
 */
 
-Vue.component('input-busca',{
+Vue.component('input-busca', {
   template: `
   <form>
   <div class="place-input">
@@ -305,28 +305,28 @@ Vue.component('input-busca',{
     <button @click.prevent="getId(id)" onclick="window.location.href='lista.html'" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
   </div>
 </form>`,
-data(){
-  return{
-    resource: this.$resource(urlApi+'imoveis'),
-    
-    id : '',
-    imoveis: []
-  }
-},  
-methods: {
-  getId(id){
+  data() {
+    return {
+      resource: this.$resource(urlApi + 'imoveis'),
 
-    this.resource.get({}).then((response) =>{
-      this.imoveis = response.data
-      console.log(response.data)
-    })
-   },
-},
+      id: '',
+      imoveis: []
+    }
+  },
+  methods: {
+    getId(id) {
+
+      this.resource.get({}).then((response) => {
+        this.imoveis = response.data
+        console.log(response.data)
+      })
+    },
+  },
 })
 
 var inputBusca = new Vue({
   el: '#placeBuscar',
- })
+})
 
 
 /*
@@ -335,16 +335,18 @@ var inputBusca = new Vue({
 */
 
 //  GET / Buscar
-Vue.component('card-house',{
- template: ` 
+Vue.component('card-house', {
+  template: ` 
 <div class="row content-lista" >
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
     <div class="card" style="width: 350px;">
        <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
        <div class="card-body card-imovel">
-         <h6 class="card-title" >{{imovel.titulo}} R$: {{imovel.preco}}</h6>
-         <p class="card-text">descrição: {{imovel.descricao}}</p>
-         <p class="card-text">Endereço: {{imovel.endereco}}</p>
+         <h4 class="card-title" >{{imovel.titulo}}</h4>
+         <h6 class="card-title" >{{imovel.status}} : R$ {{imovel.preco}}</h6>
+         <p class="card-text">Descrição: {{imovel.descricao}}</p>
+         <p class="card-text">Quartos: {{imovel.numQuartos}} / Banheiros: {{imovel.numBanheiros}}</p>
+         <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}}</p>
          <p class="card-text">id: {{imovel._id}}</p>
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
@@ -355,41 +357,41 @@ Vue.component('card-house',{
 </div>
    
  `,
- data(){
-   return{
-     resource: this.$resource(urlApi+'imoveis{/id}'),
-     imoveis: [],
-     id : ''
-   }
- },
+  data() {
+    return {
+      resource: this.$resource(urlApi + 'imoveis{/id}'),
+      imoveis: [],
+      id: ''
+    }
+  },
   methods: {
-    getId(id){
+    getId(id) {
       this.id = id
       // console.log("esse é o id "+ this.id)
       eventBus.$emit('getId', this.id)
-      this.resource.get({}).then((response) =>{
+      this.resource.get({}).then((response) => {
         this.idImovel = response.data
-       
+
       })
-     },
-    iniciar(){
-     
-      this.resource.get({}).then((response) =>{
+    },
+    iniciar() {
+
+      this.resource.get({}).then((response) => {
         this.imoveis = response.data
         console.log(response.data)
       })
     }
   },
-  created(){
+  created() {
     this.iniciar()
   }
-  
+
 })
 
 
 
 var loginModal = new Vue({
- el: '.cardHouse',
+  el: '.cardHouse',
 })
 
 
@@ -397,7 +399,7 @@ var loginModal = new Vue({
 /*
 ====================== Post / Cadastrar imovel ========================
 */
-Vue.component('cadastrar-imovel',{
+Vue.component('cadastrar-imovel', {
   template: `
     <form ref="form" @submit.prevent="handleSubmit">
 
@@ -411,18 +413,32 @@ Vue.component('cadastrar-imovel',{
     <h2 align="center">Cadastrar Ímovel</h2>
 
     <div class="form-group">
-      <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Digite o tipo da venda (Venda, Aluguel)">
+    <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Título">
+  </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)">
     </div>
-
-
 
     <div class="form-group">
       <input type="text" class="form-control input-grey" id="endereco" v-model="endereco" placeholder="Endereço">
     </div>
 
     <div class="form-group">
-        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Descrição do Imovel (2 quartos, 2 banheiro, sala, cozinha etc..">
+      <input type="text" class="form-control input-grey" id="cidade" v-model="cidade" placeholder="Cidade">
+    </div>
+
+    <div class="form-group">
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel">
       </div>
+
+      <div class="form-group">
+      <input type="text" class="form-control input-grey" v-model="numQuartos" id="numQuartos" aria-describedby="emailHelp" placeholder="Número de quartos">
+    </div>
+
+    <div class="form-group">
+    <input type="text" class="form-control input-grey" v-model="numBanheiros" id="numBanheiros" aria-describedby="emailHelp" placeholder="Número de banheiros">
+  </div>
 
       <div class="form-group">
       <input type="text" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
@@ -435,21 +451,25 @@ Vue.component('cadastrar-imovel',{
     <button type="submit" class="btn button-grey"  >Cadastrar</button>
    
   </form>`,
-  data(){
-    return{
+  data() {
+    return {
       // requisição 
-      resource: this.$resource(urlApi+'imoveis'),
+      resource: this.$resource(urlApi + 'imoveis'),
       imoveis: [],
       errors: [],
-      titulo : '',
-      endereco : '',
-      descricao : '',
-      preco : ''
+      status: '',
+      titulo: '',
+      endereco: '',
+      cidade: '',
+      descricao: '',
+      numBanheiros: '',
+      numQuartos: '',
+      preco: ''
     }
   },
   methods: {
-    
-    handleSubmit () {
+
+    handleSubmit() {
       // Validação
       this.errors = [];
 
@@ -460,7 +480,7 @@ Vue.component('cadastrar-imovel',{
       if (!this.endereco) {
         this.errors.push('O endereco é obrigatório.');
       }
-      
+
       if (!this.descricao) {
         this.errors.push('O descricao é obrigatório.');
       }
@@ -470,40 +490,48 @@ Vue.component('cadastrar-imovel',{
       }
       if (!this.errors.length) {
         // Post
-        this.$http.post(urlApi+'imoveis', {
+        this.$http.post(urlApi + 'imoveis', {
           titulo: this.titulo,
+          status: this.status,
           endereco: this.endereco,
+          cidade: this.cidade,
           descricao: this.descricao,
+          numBanheiros: this.numBanheiros,
+          numQuartos: this.numQuartos,
           preco: this.preco
-        }).then(response =>{
-        this.imoveis = response.data
+        }).then(response => {
+          this.imoveis = response.data
 
-        console.log(response.data)
+          console.log(response.data)
 
         })
         alert('cadastro com sucesso')
-         this.titulo = ""
-          this.endereco = ""
-          this.descricao = ""
-          this.preco = ""
+        this.titulo = ""
+        this.status = ""
+        this.endereco = ""
+        this.cidade = ""
+        this.descricao = ""
+        this.numBanheiros = ""
+        this.numQuartos = ""
+        this.preco = ""
         return true;
       }
     },
 
 
   }
-   
+
 })
 
 var cadastrarImovel = new Vue({
-el: '#cadastrarImovel',
+  el: '#cadastrarImovel',
 })
 
 /*
 ====================== Delete / Deletar imoveis ===========================
 */
 
-Vue.component('deletar-imovel',{
+Vue.component('deletar-imovel', {
   template: ` 
   <div>
       <form ref="form" >
@@ -539,70 +567,70 @@ Vue.component('deletar-imovel',{
       </tbody>
     </table>
   </div>`,
-  data(){
-    return{
- 
-      resource: this.$resource(urlApi+'imoveis'),
+  data() {
+    return {
+
+      resource: this.$resource(urlApi + 'imoveis'),
       imoveis: [],
-      id : ''
+      id: ''
     }
   },
-  methods:{
-    iniciar(){
-      this.resource.get({}).then((response) =>{
+  methods: {
+    iniciar() {
+      this.resource.get({}).then((response) => {
         this.imoveis = response.data
         console.log(response.data)
       })
     },
-    deletarImovel(id){
+    deletarImovel(id) {
       console.log(id)
-     
-      url = urlApi+'imoveis/'+id
+
+      url = urlApi + 'imoveis/' + id
       console.log(url)
-      
-    this.$http.delete(url).then((response) => {
-      location.reload();
-    }, response =>{
-      id = ''
-      console.log("Erro ao deletar!");
-      alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
-    })
-    this.id = ""
-    listaUsuario.$forceUpdate();
-  },
-    // Função deletar
-    deletar(){
-        id = this.id
-        
-        url = 'http://localhost:8080/api/imoveis/'+id
-        console.log(url)
+
       this.$http.delete(url).then((response) => {
-       
-        alert("Deletado com sucesso")
-      }, response =>{
-        
+        location.reload();
+      }, response => {
+        id = ''
         console.log("Erro ao deletar!");
-        alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
+        alert("erro id:" + id + " Não encontrado! Vê direito ai poha!")
+      })
+      this.id = ""
+      listaUsuario.$forceUpdate();
+    },
+    // Função deletar
+    deletar() {
+      id = this.id
+
+      url = 'http://localhost:8080/api/imoveis/' + id
+      console.log(url)
+      this.$http.delete(url).then((response) => {
+
+        alert("Deletado com sucesso")
+      }, response => {
+
+        console.log("Erro ao deletar!");
+        alert("erro id:" + id + " Não encontrado! Vê direito ai poha!")
       })
       this.id = ""
     }
   },
-  created(){
-    console.log(typeof(count))
-     this.iniciar()
-   }
+  created() {
+    console.log(typeof (count))
+    this.iniciar()
+  }
 })
 
 
 var deletarImovel = new Vue({
   el: '#deletarImovel',
-  })
+})
 
 /*
  ==================== Listar usuario/ Get Usuario =====================
 */
 
-Vue.component('listar-usuario',{
+Vue.component('listar-usuario', {
   template: ` 
  <div class="row " >
  <table class="table">
@@ -631,49 +659,49 @@ Vue.component('listar-usuario',{
  </div>
     
   `,
-  data(){
-    return{
-      resource: this.$resource(urlApi+'users'),
+  data() {
+    return {
+      resource: this.$resource(urlApi + 'users'),
       usuarios: []
     }
   },
-   methods: {
+  methods: {
 
-     iniciar(){
-       this.resource.get({}).then((response) =>{
-         this.usuarios = response.data
-         console.log(response.data)
-       })
-     },
+    iniciar() {
+      this.resource.get({}).then((response) => {
+        this.usuarios = response.data
+        console.log(response.data)
+      })
+    },
     //  Deletar usuario
-     deletarUser(id){
+    deletarUser(id) {
       console.log(id)
-     
-      url = urlApi+'users/'+id
-      console.log(url)
-      
-    this.$http.delete(url).then((response) => {
-      location.reload();
-    }, response =>{
-      id = ''
-      console.log("Erro ao deletar!");
-      alert("erro id:"+id+" Não encontrado! Vê direito ai poha!")
-    })
-    this.id = ""
-    listaUsuario.$forceUpdate();
-  }
-   },
-   created(){
-    console.log(typeof(count))
-     this.iniciar()
-   }
 
-   
- })
- 
- var listaUsuario = new Vue({
+      url = urlApi + 'users/' + id
+      console.log(url)
+
+      this.$http.delete(url).then((response) => {
+        location.reload();
+      }, response => {
+        id = ''
+        console.log("Erro ao deletar!");
+        alert("erro id:" + id + " Não encontrado! Vê direito ai poha!")
+      })
+      this.id = ""
+      listaUsuario.$forceUpdate();
+    }
+  },
+  created() {
+    console.log(typeof (count))
+    this.iniciar()
+  }
+
+
+})
+
+var listaUsuario = new Vue({
   el: '#listarUsuario',
- })
+})
 
 
 /*
@@ -682,7 +710,7 @@ Vue.component('listar-usuario',{
 
 
 
-Vue.component('delete-confirm',{
+Vue.component('delete-confirm', {
   template: `
   
   <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" >
@@ -705,29 +733,29 @@ Vue.component('delete-confirm',{
    </div>
   </div>
   `,
-  data(){
-    return{
-      
-      resource: this.$resource(urlApi +'imoveis{/id}'),
+  data() {
+    return {
+
+      resource: this.$resource(urlApi + 'imoveis{/id}'),
       imoveis: []
     }
   },
-   methods: {
-  
-     iniciar(){
-       this.resource.get({}).then((response) =>{
-         this.imoveis = response.data[2]
-       
-       })
-     }
-   },
-   created(){
-     this.iniciar()
-   }
-   
-  })
-  
-  var descModal = new Vue({
+  methods: {
+
+    iniciar() {
+      this.resource.get({}).then((response) => {
+        this.imoveis = response.data[2]
+
+      })
+    }
+  },
+  created() {
+    this.iniciar()
+  }
+
+})
+
+var descModal = new Vue({
   el: '#place-delete-modal',
-  
-  })
+
+})

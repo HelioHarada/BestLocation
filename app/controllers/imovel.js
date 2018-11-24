@@ -50,8 +50,12 @@ imovelController.updateImovel = (req, res) => {
         }
         else {
             imovel.titulo = req.body.titulo;
+            imovel.status = req.body.status;
             imovel.descricao = req.body.descricao;
             imovel.endereco = req.body.endereco;
+            imovel.cidade = req.body.cidade;
+            imovel.numQuartos = req.body.numQuartos;
+            imovel.numBanheiros = req.body.numBanheiros;
             imovel.preco = req.body.preco;
 
             imovel.save(function (error) {
@@ -69,8 +73,12 @@ imovelController.updateImovel = (req, res) => {
 imovelController.newImovel = (req, res) => {
     let newImovel = new modelImovel({
         titulo: req.body.titulo,
+        status: req.body.status,
         endereco: req.body.endereco,
+        cidade: req.body.cidade,
         descricao: req.body.descricao,
+        numQuartos: req.body.numQuartos,
+        numBanheiros: req.body.numBanheiros,
         preco: req.body.preco
     });
 
