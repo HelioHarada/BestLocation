@@ -1,6 +1,6 @@
-//var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'http://localhost:8080/api/'
 // var urlApi = 'https://bestlocation.herokuapp.com/api/'
-var urlApi = 'http://bestlocation.com.br/api/'
+// var urlApi = 'http://bestlocation.com.br/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -331,7 +331,7 @@ var inputBusca = new Vue({
 
 
 /*
-  ======================= Listagem de imoveis ========================
+  ======================= Listagem/Lista de imoveis ========================
   ============================ Get / buscar ==========================
 */
 
@@ -414,7 +414,7 @@ Vue.component('cadastrar-imovel', {
     <h2 align="center">Cadastrar Ímovel</h2>
 
     <div class="form-group">
-    <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Título">
+    <input type="titulo" class="form-control input-grey" v-model="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Título (Casa, Condominio, Apartamento)">
   </div>
 
     <div class="form-group">
@@ -430,7 +430,7 @@ Vue.component('cadastrar-imovel', {
     </div>
 
     <div class="form-group">
-        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel">
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel (Sala, Cozinha, Garagem, área de trabalho etc..">
       </div>
 
       <div class="form-group">
@@ -450,7 +450,8 @@ Vue.component('cadastrar-imovel', {
       </div>
 -->
     <button type="submit" class="btn button-grey"  >Cadastrar</button>
-   
+   <br>
+   <br>
   </form>`,
   data() {
     return {
@@ -485,7 +486,9 @@ Vue.component('cadastrar-imovel', {
       if (!this.descricao) {
         this.errors.push('O descricao é obrigatório.');
       }
-
+      if (!this.cidade) {
+        this.errors.push('A cidade é obrigatório.');
+      }
       if (!this.preco) {
         this.errors.push('O preco é obrigatório.');
       }
@@ -550,6 +553,7 @@ Vue.component('deletar-imovel', {
           <th scope="col">Titulo</th>
           <th scope="col">Descrição</th>
           <th scope="col">Endereço</th>
+          <th scope="col">Cidade</th>          
           <th scope="col">Preço</th>
           <th scope="col">Id</th>
         </tr>
@@ -560,6 +564,7 @@ Vue.component('deletar-imovel', {
           <td>{{imovel.titulo}}</td>
           <td>{{imovel.descricao}}</td>
           <td>{{imovel.endereco}}</td>
+          <td>{{imovel.cidade}}</td>
           <td>{{imovel.preco}}</td>
           <td>{{imovel._id}}</td>
           <td><button  data-toggle="modal"  @click="deletarImovel(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button></td>
