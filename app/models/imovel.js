@@ -35,7 +35,7 @@ const imovelSchema = new Schema ({
         default: ''
     },
     preco: {
-        type: Number,
+        type: String,
         default: '0.00'
     }
 });
