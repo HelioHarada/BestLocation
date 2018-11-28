@@ -1,6 +1,6 @@
-var urlApi = 'http://localhost:8080/api/'
+// var urlApi = 'http://localhost:8080/api/'
 // var urlApi = 'https://bestlocation.herokuapp.com/api/'
-// var urlApi = 'http://bestlocation.com.br/api/'
+var urlApi = 'http://bestlocation.com.br/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -295,7 +295,7 @@ var descModal = new Vue({
 
 /*
     --------------Buscar imoveis-------------------
-    ----------------Get imoveis -------------------
+    ----------------Get imoveis / buscar -------------------
 */
 
 Vue.component('input-busca', {
@@ -332,7 +332,7 @@ var inputBusca = new Vue({
 
 /*
   ======================= Listagem/Lista de imoveis ========================
-  ============================ Get / buscar ==========================
+  ============================ Get / listagem ==========================
 */
 
 //  GET / Buscar
@@ -340,7 +340,7 @@ Vue.component('card-house', {
   template: ` 
 <div class="row content-lista" >
   <div class="col-md-4 card-house" v-for="imovel in imoveis" >
-    <div class="card" style="width: 350px;">
+    <div class="card">
        <img class="card-img-top" src="img/casa.jpg" alt="Card image cap">
        <div class="card-body card-imovel">
          <h4 class="card-title" >{{imovel.titulo}}</h4>
@@ -348,7 +348,7 @@ Vue.component('card-house', {
          <p class="card-text">Descrição: {{imovel.descricao}}</p>
          <p class="card-text">Quartos: {{imovel.numQuartos}} / Banheiros: {{imovel.numBanheiros}}</p>
          <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}}</p>
-         <p class="card-text">id: {{imovel._id}}</p>
+         <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
     
          
@@ -404,7 +404,9 @@ Vue.component('cadastrar-imovel', {
   template: `
     <form ref="form" @submit.prevent="handleSubmit">
 
-    <div class="alert alert-danger" role="alert"  v-if="errors.length" >
+
+
+    <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
       <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
       <ul>
         <li v-for="error in errors">{{ error }}</li>
@@ -434,16 +436,16 @@ Vue.component('cadastrar-imovel', {
       </div>
 
       <div class="form-group">
-      <input type="text" class="form-control input-grey" v-model="numQuartos" id="numQuartos" aria-describedby="emailHelp" placeholder="Número de quartos">
+      <input type="number" class="form-control input-grey" v-model="numQuartos" id="numQuartos" aria-describedby="emailHelp" placeholder="Número de quartos">
     </div>
 
     <div class="form-group">
-    <input type="text" class="form-control input-grey" v-model="numBanheiros" id="numBanheiros" aria-describedby="emailHelp" placeholder="Número de banheiros">
+    <input type="number" class="form-control input-grey" v-model="numBanheiros" id="numBanheiros" aria-describedby="emailHelp" placeholder="Número de banheiros">
   </div>
 
-      <div class="form-group">
-      <input type="text" class="form-control input-grey" id="preco" v-model="preco" placeholder="Digite o Preço">
-    </div>
+     <div class="form-group">
+     <money v-model="preco" v-bind="money" class="form-control input-grey" placeholder="Digite o Preço"></money>
+     </div>
 
 <!--      <div class="form-group">
         <input type="file" class="form-control input-grey"  placeholder="descrição do Imovel">
@@ -455,6 +457,7 @@ Vue.component('cadastrar-imovel', {
   </form>`,
   data() {
     return {
+
       // requisição 
       resource: this.$resource(urlApi + 'imoveis'),
       imoveis: [],
@@ -465,13 +468,25 @@ Vue.component('cadastrar-imovel', {
       cidade: '',
       descricao: '',
       numBanheiros: '',
+      preco: '',
       numQuartos: '',
-      preco: ''
+
+      // === Money === //
+      money: {
+        decimal: ',',
+        thousands: '.',
+        prefix: ' ',
+        suffix: ' ',
+        precision: 2,
+        masked: true
+      }
     }
+ 
   },
   methods: {
 
     handleSubmit() {
+     
       // Validação
       this.errors = [];
 
@@ -493,6 +508,7 @@ Vue.component('cadastrar-imovel', {
         this.errors.push('O preco é obrigatório.');
       }
       if (!this.errors.length) {
+        
         // Post
         this.$http.post(urlApi + 'imoveis', {
           titulo: this.titulo,
@@ -506,19 +522,32 @@ Vue.component('cadastrar-imovel', {
         }).then(response => {
           this.imoveis = response.data
 
-          console.log(response.data)
+            var messageError = response.data.message
+          
+          console.log("Erro: "+messageError.message)
+       
+          if(response.data.success == true)
+          {
+            alert('cadastro com sucesso')
+            this.titulo = ""
+            this.status = ""
+            this.endereco = ""
+            this.cidade = ""
+            this.descricao = ""
+            this.numBanheiros = ""
+            this.numQuartos = ""
+            this.preco = ""
+            return true;
+          }else{
 
+            alert("erro ao cadastrar!")
+            
+          }
         })
-        alert('cadastro com sucesso')
-        this.titulo = ""
-        this.status = ""
-        this.endereco = ""
-        this.cidade = ""
-        this.descricao = ""
-        this.numBanheiros = ""
-        this.numQuartos = ""
-        this.preco = ""
-        return true;
+     
+
+      }else{
+        window.scrollTo(0, 0);
       }
     },
 
@@ -529,6 +558,7 @@ Vue.component('cadastrar-imovel', {
 
 var cadastrarImovel = new Vue({
   el: '#cadastrarImovel',
+
 })
 
 /*

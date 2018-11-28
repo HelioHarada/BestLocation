@@ -313,16 +313,25 @@ body{
 @media screen and (min-width: 990px){
     .content-lista{
         margin-left: 0px;
-  
+        
+    }
+
+    .card{
+        width: 350px;
     }
 }
 
 
-
+/* Celular */
 @media screen and (max-width: 990px){
     .content-lista{
         margin-left: -50px;
     
+    }
+
+
+    .card{
+        width: 300px;
     }
 }
 
