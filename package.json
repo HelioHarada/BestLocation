@@ -5,7 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "axios": "^0.16.2",
-    "bcrypt": "^3.0.2",
+    "bcrypt": "https://github.com/kelektiv/node.bcrypt.js.git#master",
     "bootstrap": "^4.0.0-beta.2",
     "brcypt": "^1.0.1",
     "consign": "^0.1.6",
