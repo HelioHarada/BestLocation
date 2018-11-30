@@ -1,6 +1,6 @@
-// var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'http://localhost:8080/api/'
 // var urlApi = 'https://bestlocation.herokuapp.com/api/'
-var urlApi = 'http://bestlocation.com.br/api/'
+// var urlApi = 'http://bestlocation.com.br/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -26,20 +26,23 @@ Vue.component('menu-header', {
       <li class="nav-item">
         <a class="nav-link" href="lista.html">Lista de Imóveis</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" >Login</a>
-      </li>
-     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
-          <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
-          <a class="dropdown-item" href="deletar.html">Deletar</a>
-   
-        </div>
-      </li> 
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" > <img src="img/user.svg" class="icon-user" alt="user">Login</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
+            <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
+            <a class="dropdown-item" href="deletar.html">Deletar</a>
+
+          </div>
+        </li> 
     </ul>
   </div>
 </nav>
@@ -70,7 +73,8 @@ Vue.component('login-modal', {
 
              <!-- <ul class="nav nav-tabs">
                  <li class="nav-item">
-                   <a href="#login-tab" id="login-link" data-toggle="tab" class="nav-link active" role="tab" aria-selected="true">Login</a>
+                 
+                   <a href="#login-tab" id="login-link" data-toggle="tab" class="nav-link active" role="tab" aria-selected="true">   Login</a>
                  </li>
                  <li class="nav-item">
                    <a href="#register-tab" id="register-link" data-toggle="tab" class="nav-link" role="tab" aria-selected="true">Cadastrar</a>
