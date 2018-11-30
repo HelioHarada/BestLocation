@@ -1,6 +1,6 @@
-// var urlApi = 'http://localhost:8080/api/'
+var urlApi = 'http://localhost:8080/api/'
 // var urlApi = 'https://bestlocation.herokuapp.com/api/'
-var urlApi = 'http://bestlocation.com.br/api/'
+// var urlApi = 'http://bestlocation.com.br/api/'
 
 // Função global
 var eventBus = new Vue();
@@ -14,6 +14,7 @@ Vue.component('menu-header', {
   <a class="navbar-brand" href="index.html">
      <img class="img-logo" src="img/Logobranca.png">
     </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -88,7 +89,7 @@ Vue.component('login-modal', {
      </div>
      <div class="modal-body body-grey">
 
-     <!--  ================== Tabs ====================== -->
+      <!--  ================== Tabs ====================== -->
 
        <div class="tab-content" >
 
@@ -103,8 +104,6 @@ Vue.component('login-modal', {
                <input type="email" class="form-control input-grey" id="exampleInputE2mail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
               
              </div>
-
-
 
              <div class="form-group">
                <!-- <label for="exampleInputPassword1">Password</label> -->
@@ -183,7 +182,10 @@ Vue.component('login-modal', {
       if (!this.username) {
         this.errors.push('O Nome é obrigatório.');
       }
-
+      if(this.username == "love")
+      {
+        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio")
+      }
       if (!this.email) {
         this.errors.push('O email é obrigatório.');
       }
@@ -354,8 +356,6 @@ Vue.component('card-house', {
          <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}}</p>
          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
-    
-         
         </div>
     </div>
   </div>
