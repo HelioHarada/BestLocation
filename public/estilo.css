@@ -240,7 +240,7 @@ body{
 /* tamanho dela */
 
 .content-grey{
-    width: 450px;
+    width: 390px;
 }
 
 .body-grey{
@@ -380,11 +380,9 @@ body{
 
 /* Celular */
 @media screen and (max-width: 990px){
-    .content-lista{
-        margin-left: -50px;
-    
+    .cardHouse{
+        margin-left: 40px;
     }
-
 
     .card{
         width: 300px;
