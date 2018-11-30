@@ -228,7 +228,7 @@ body{
 
     .content-grey{
         position: relative;
-        width: auto;
+        width: 390px;
     }
 }
 
@@ -242,7 +242,7 @@ body{
 /* tamanho dela */
 
 .content-grey{
-    width: 390px;
+    width: 450px;
 }
 
 .body-grey{
