@@ -54,6 +54,13 @@
             console.log("finish")
           $('#loadPage').delay(500).fadeOut( "slow" );
         })    
+
+        $( document ).ready(function() {
+        setTimeout(function(){
+            console.log("settimeout");
+            $('#loadPage').delay(500).fadeOut( "slow" );
+            }, 5000);
+        });
     </script>
         <div id="loadPage">
           <div id="loading-center-absolute">
