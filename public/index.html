@@ -61,13 +61,11 @@
   <!-- LoaderPage -->
   <script>
     $(window).load(function (){
-      console.log("finish")
       $('#loadPage').delay(1000).fadeOut( "slow" );
     })    
 
     $( document ).ready(function() {
       setTimeout(function(){
-        console.log("settimeout");
         $('#loadPage').delay(500).fadeOut( "slow" );
         }, 5000);
     });
