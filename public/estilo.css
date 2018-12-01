@@ -1,4 +1,5 @@
-body{
+html, body{
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -418,4 +419,31 @@ body{
     margin-left: 15px;
 
     color:white;
+}
+
+/* Perfil*/
+
+/* Descobrir perfil*/
+
+#descobrir-perfil{
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.blText{
+    margin-top: 20px;
+}
+
+.chat-input{
+    position: fixed;
+    bottom: 10px;
+    width: 98%;
+}
+
+.resposta-nome{
+    width: 100%;
+    display: flex;
+     justify-content: flex-end;
+  
+   
 }

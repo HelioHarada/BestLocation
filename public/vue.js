@@ -799,3 +799,96 @@ var descModal = new Vue({
   el: '#place-delete-modal',
 
 })
+
+/*
+================== Perfil ================================
+*/
+
+Vue.component('descobrir-perfil',{
+  template: ` 
+  
+  <div>
+    <div class="bl-chat">
+        <transition name="slide-titulo">
+          <h1 v-if="show">{{blMessageTitle}}</h1>
+        </transition>
+
+        <transition name="slide-second">
+          <h2 v-if="show">{{blMessagesub}}</h2>
+        </transition>
+
+        <transition name="slide-text" >
+          <h2 v-if="show"  >{{blMessageText}}</h2>
+        </transition>
+    </div>
+
+    <div class="resposta-nome">
+       <h2>{{perfil[0]}}</h2>
+    </div>
+    
+    <transition name="slide-titulo" >
+        <h2 v-if="show2"  >Olá {{perfil[0]}} tudo bem? </h2>
+   </transition>
+
+    <div class="chat-input">
+       <div class="form-group">
+            <transition name="slide-input">
+                  <input  v-if="show" v-model="info" class="form-control input-grey"> 
+            </transition>
+        </div>
+       
+        <div>
+            <transition name="slide-input">
+                <button v-if="show" @click="pushInfo(info)" class="btn button-grey">Enviar</button>
+          </transition>
+        </div>   
+    </div>
+
+
+  </div>
+
+  `,
+  data()  {
+    return{
+      blMessageTitle : '',
+      blMessagesub : '',
+      blMessageText: '',
+      show: false,
+      show2: false,
+
+      perfil: [],
+      name: '',
+      info:''
+    }
+  },
+  methods: {
+    chatStart(){
+      let self = this;
+      self.blMessageTitle = "Olá nós somos a BestLocation!", 
+      self.blMessagesub = "Vamos te ajudar a descobrir seu perfil.",
+      self.blMessageText = "primeiramente como posso te chamar?"
+
+      self.show = true
+
+    },
+
+    pushInfo(){
+      let self = this;
+      self.perfil.push(self.info);
+      self.show2 = true
+      console.log(self.perfil);
+      
+    }
+  },
+  created() {
+    let self = this;
+    setTimeout(function(){
+      self.chatStart();
+    },1000)
+  }
+})
+
+var descModal = new Vue({
+  el: '#descobrir-perfil',
+
+})
