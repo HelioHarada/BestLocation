@@ -811,30 +811,30 @@ Vue.component('descobrir-perfil',{
   <div>
     <div class="bl-chat">
         <transition name="slide-titulo">
-          <h1 v-if="show">{{blMessageTitle}}</h1>
+          <h1 class="bl-titulo" v-if="show">{{blMessageTitle}}</h1>
         </transition>
 
         <transition name="slide-second">
-          <h2 v-if="show">{{blMessagesub}}</h2>
+          <h2 v-if="show" class="bl-text">{{blMessagesub}}</h2>
         </transition>
 
         <transition name="slide-text" >
-          <h2 v-if="show"  >{{blMessageText}}</h2>
+          <h2 v-if="show" class="bl-text" >{{blMessageText}}</h2>
         </transition>
     </div>
 
     <div class="resposta-nome">
-       <h2>{{perfil[0]}}</h2>
+       <h2 class="bl-text" >{{perfil[0]}}</h2>
     </div>
     
     <transition name="slide-titulo" >
-        <h2 v-if="show2"  >Olá {{perfil[0]}} tudo bem? </h2>
+        <h2 v-if="show2"  class="bl-text" >Olá {{perfil[0]}} tudo bem? </h2>
    </transition>
 
     <div class="chat-input">
        <div class="form-group">
             <transition name="slide-input">
-                  <input  v-if="show" v-model="info" class="form-control input-grey"> 
+                  <input  @keyup.enter="pushInfo(info)" v-if="show" v-model="info" class="form-control input-grey"> 
             </transition>
         </div>
        

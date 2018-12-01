@@ -389,6 +389,18 @@ html, body{
     .card{
         width: 300px;
     }
+
+    .bl-titulo{
+        font-size: 24px;
+    }
+
+    .bl-text{
+        font-size: 20px;
+    }
+
+    .chat-input{
+        width: 93%!important;
+    }
 }
 
 
@@ -445,5 +457,5 @@ html, body{
     display: flex;
      justify-content: flex-end;
   
-   
 }
+
