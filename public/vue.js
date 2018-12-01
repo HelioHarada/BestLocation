@@ -41,6 +41,7 @@ Vue.component('menu-header', {
             <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
             <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
             <a class="dropdown-item" href="deletar.html">Deletar</a>
+            <a class="dropdown-item" href="perfil.html">Descobrindo Perfil</a>
 
           </div>
         </li> 
