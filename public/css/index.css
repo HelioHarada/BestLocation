@@ -1,0 +1,25 @@
+/* Home */
+
+.funcionalidade{
+    margin-top: 90px;
+}
+
+/* imagem inicio */
+.banner-begin{
+    background-image: url("/img/bannerInicio.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
+/* Input inicio */
+
+.title-form{
+    font-weight: 400; 
+    text-shadow: 0.5px 0.2px #fff;
+}
+
+.icon-serach{
+    color: white;
+    font-size: 18px;
+}
