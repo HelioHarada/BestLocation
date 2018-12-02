@@ -27,9 +27,25 @@
 
 }
 
+/* Banner lista */
+.bannerDefault{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 0px;
+}
+
+.img-bannerDefault{
+    width: 100%;
+    height: auto;
+}
+
 /* Card */
 .card-house{
     margin-bottom: 75px;
+}
+
+.cardHouse{
+    margin-left: 30px;
 }
 
 .card-imovel{
@@ -44,3 +60,4 @@
     margin-bottom: 5px;
     font-size: 14px;
 }
+

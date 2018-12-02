@@ -41,6 +41,7 @@ html, body{
     width: 400px;
 
 }
+
 /* 
     Menu
 */
@@ -65,13 +66,10 @@ html, body{
 
 }
 
-
 .nav-bl{
     justify-content: flex-end;
 
 }
-
-
 
 
 .img-logo{
@@ -87,6 +85,7 @@ html, body{
     text-shadow: 2px 2px 2px #ccc;
     margin: 100px 0px 0px 140px;
 }
+
 
 
 .list-function{
@@ -113,44 +112,6 @@ html, body{
 
 
 
-.place-input{
-    background-color: white;
-    height: 60px;
-    border-radius: 4px;
-    box-shadow:0px 3px 10px -4px #000;
-}
-
-.input-principal{
-    height: 100%;
-    width: calc(100% - 60px);
-    border: none;
-    border-radius: 4px;
-    padding: 0px 0px 0px 15px;
-    font-size: 18px;
-}
-
-.input-principal:focus, .btn-enviar:hover, .btn-enviar:active{
-    outline: none;
-}
-
-.btn-enviar{
-    border-radius: 4px;
-    height: 54px;
-    width: 54px;
-    margin: 3px 4px 0px 0px;
-    float: right;
-    border: none;
-    background-color: #ff7f00;
-    cursor: pointer;
-}
-
-.btn-enviar:hover{
-    background-color: #ff8915;
-}
-
-
-
-
 .form-group{
 	margin-bottom: 15px;
 }
@@ -166,41 +127,9 @@ html, body{
 }
 
 
-.bannerDefault{
-    margin-top: 30px;
-    margin-bottom: 50px;
-    padding: 0px;
-}
-
-.img-bannerDefault{
-    width: 100%;
-    height: auto;
-}
-
-.banner{
-    height: 60px;
-    width: 90%;
-    background-image: url("bannerMaps.jpg");
-    background-repeat: no-repeat;
-    align-items: center;
-}
-.cardHouse{
-    margin-left: 30px;
-}
-
-.form-login{
-    margin-top: 50px;
-    background-color: white;
-    padding: 30px;
-    border-radius: 20px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-}
 
 
 /* POPUP GREY */
-
 
 @media screen and (max-width: 990px){
     .dialog-grey{
