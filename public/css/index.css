@@ -69,7 +69,7 @@
 
 /* Descubra o seu Perfil */
 .find_perfil_place{
-    background-image: url('/img/bgPerfil2.jpg');
+    background-image: url('/img/04.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     max-width: 100%;
@@ -89,13 +89,17 @@
 
 .titulo_descobrir{
     text-align: center;
+    color: #000;
     font-size: 54px;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 
 }
 .subtitulo_descobrir{
+    color: #000;
     font-weight: bold;
     text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
   
 }
 
@@ -120,6 +124,7 @@
 
 .button_descobrir:hover{
     background: rgba(0,0,0,0);
-	color: #d35400;
+    color: black;
+    text-shadow: 6px 6px 10px rgba(0,0,0,0.2);
 	box-shadow: inset 0 0 0 3px #d35400;
 }
