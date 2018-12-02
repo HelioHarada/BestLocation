@@ -42,14 +42,12 @@ html, body{
 
 }
 
-/* 
-    Menu
-*/
+/* Fim loading Page */
 
-.ml-auto .dropdown-menu {
-    left: auto !important;
-    right: 0px;
-  }
+
+/*  =========== MENU HEADER =========== */
+
+
 /* Bootstrap */
 #loading-center-absolute {
  
@@ -71,7 +69,10 @@ html, body{
 
 }
 
-
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+  }
 .img-logo{
     width: 120px;
 }
@@ -87,31 +88,7 @@ html, body{
 }
 
 
-
-.list-function{
-    margin: 20px 0px 0px 140px;
-}
-
-.list-function ul li{
-    font-size: 24px;
-    list-style-type:none;
-    margin: 10px 0px 0px 0px;
-    text-shadow: 2px 2px 2px #ccc;
-}
-
-
-
-.form-search{
-    /* padding: 20px;
-    border-radius: 25px;
-    background-color: #ff7f00;
-    /* margin: 100px 0px 0px 0px; */
-    padding-top: 90px;
-
-}
-
-
-
+/* Input Geral */
 .form-group{
 	margin-bottom: 15px;
 }
@@ -127,8 +104,6 @@ html, body{
 }
 
 
-
-
 /* POPUP GREY */
 
 @media screen and (max-width: 990px){
@@ -141,8 +116,6 @@ html, body{
         width: auto!important;
     }
 }
-
-
 
 /* position popup */
 .modal-grey{
@@ -276,15 +249,12 @@ html, body{
     background-color: #e40000;
 }
 
+/* Fim Popup Login */
 
 
 
 /* Celular */
 @media screen and (max-width: 990px){
-    .cardHouse{
-        margin-left: 40px;
-    }
-
 
     .bl-titulo{
         font-size: 24px;
@@ -298,12 +268,6 @@ html, body{
         width: 93%!important;
     }
 }
-
-
-
-
-
-
 
 
 
