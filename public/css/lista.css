@@ -1,2 +1,46 @@
 /* lista */
 
+
+
+/* Card Menu */
+
+/* Desktop Media Query  */
+@media screen and (min-width: 990px){
+    .content-lista{
+        margin-left: 0px;
+        
+    }
+
+    .card{
+        width: 350px;
+    }
+}
+
+/* Mobile/Celular Media Query */
+
+@media screen and (max-width: 990px){
+
+    .card{
+        width: 300px;
+    }
+
+
+}
+
+/* Card */
+.card-house{
+    margin-bottom: 75px;
+}
+
+.card-imovel{
+    padding:10px 0px 0px 5px;
+}
+
+.card-imovel h6{
+    font-weight: 300px;
+}
+
+.card-imovel p{
+    margin-bottom: 5px;
+    font-size: 14px;
+}

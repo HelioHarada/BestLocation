@@ -347,18 +347,7 @@ html, body{
     background-color: #e40000;
 }
 
-/* CardMenu */
 
-@media screen and (min-width: 990px){
-    .content-lista{
-        margin-left: 0px;
-        
-    }
-
-    .card{
-        width: 350px;
-    }
-}
 
 
 /* Celular */
@@ -367,9 +356,6 @@ html, body{
         margin-left: 40px;
     }
 
-    .card{
-        width: 300px;
-    }
 
     .bl-titulo{
         font-size: 24px;
@@ -388,22 +374,9 @@ html, body{
 
 
 
-.card-house{
-    margin-bottom: 75px;
-}
 
-.card-imovel{
-    padding:10px 0px 0px 5px;
-}
 
-.card-imovel h6{
-    font-weight: 300px;
-}
 
-.card-imovel p{
-    margin-bottom: 5px;
-    font-size: 14px;
-}
 
 
 /* Delete user */
