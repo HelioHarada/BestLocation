@@ -116,15 +116,20 @@
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
-    background-color: #ff7f00;
+    background-color: #ffa801;
     color:white;
     overflow: hidden;
+    box-shadow: inset 0 0 0 0 #ff7f00;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
 }
 
 
 .button_descobrir:hover{
-    background: rgba(0,0,0,0);
+    box-shadow: inset 0 0 0 50px #ff7f00;
+    /* background: rgba(0,0,0,0);
     color: black;
     text-shadow: 6px 6px 10px rgba(0,0,0,0.2);
-	box-shadow: inset 0 0 0 3px #d35400;
+	box-shadow: inset 0 0 0 3px #d35400; */
 }
