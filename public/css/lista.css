@@ -1,0 +1,67 @@
+/* lista */
+
+
+
+/* Card Menu */
+
+/* Desktop Media Query  */
+@media screen and (min-width: 990px){
+    .content-lista{
+        margin-left: 0px;
+        
+    }
+
+    .card{
+        width: 350px;
+    }
+}
+
+/* Mobile/Celular Media Query */
+
+@media screen and (max-width: 990px){
+    
+    .cardHouse{
+        margin-left: 40px;
+    }
+
+    .card{
+        width: 300px;
+    }
+
+
+}
+
+/* Banner lista */
+.bannerDefault{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 0px;
+}
+
+.img-bannerDefault{
+    width: 100%;
+    height: auto;
+}
+
+/* Card */
+.card-house{
+    margin-bottom: 75px;
+}
+
+.cardHouse{
+    margin-left: 30px;
+}
+
+.card-imovel{
+    padding:10px 0px 0px 5px;
+}
+
+.card-imovel h6{
+    font-weight: 300px;
+}
+
+.card-imovel p{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+

@@ -1,4 +1,5 @@
-body{
+html, body{
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -40,14 +41,13 @@ body{
     width: 400px;
 
 }
-/* 
-    Menu
-*/
 
-.ml-auto .dropdown-menu {
-    left: auto !important;
-    right: 0px;
-  }
+/* Fim loading Page */
+
+
+/*  =========== MENU HEADER =========== */
+
+
 /* Bootstrap */
 #loading-center-absolute {
  
@@ -64,31 +64,21 @@ body{
 
 }
 
-
 .nav-bl{
     justify-content: flex-end;
 
 }
 
-.funcionalidade{
-    margin-top: 90px;
-}
-
-
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+  }
 .img-logo{
     width: 120px;
 }
 
 .menu-login{
     cursor: pointer;
-}
-
-.banner-begin{
-    background-image: url("img/bannerInicio.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 600px;
-    
 }
 
 .title{
@@ -98,77 +88,7 @@ body{
 }
 
 
-.list-function{
-    margin: 20px 0px 0px 140px;
-}
-
-.list-function ul li{
-    font-size: 24px;
-    list-style-type:none;
-    margin: 10px 0px 0px 0px;
-    text-shadow: 2px 2px 2px #ccc;
-}
-
-
-
-.form-search{
-    /* padding: 20px;
-    border-radius: 25px;
-    background-color: #ff7f00;
-    /* margin: 100px 0px 0px 0px; */
-    padding-top: 90px;
-
-}
-
-
-
-.place-input{
-    background-color: white;
-    height: 60px;
-    border-radius: 4px;
-    box-shadow:0px 3px 10px -4px #000;
-  
-}
-
-.input-principal{
-    height: 100%;
-    width: calc(100% - 60px);
-    border: none;
-    border-radius: 4px;
-    padding: 0px 0px 0px 15px;
-    font-size: 18px;
-}
-
-.input-principal:focus, .btn-enviar:hover, .btn-enviar:active{
-    outline: none;
-}
-
-.btn-enviar{
-    border-radius: 4px;
-    height: 54px;
-    width: 54px;
-    margin: 3px 4px 0px 0px;
-    float: right;
-    border: none;
-    background-color: #ff7f00;
-    cursor: pointer;
-}
-
-.btn-enviar:hover{
-    background-color: #ff8915;
-}
-
-.icon-serach{
-    color: white;
-    font-size: 18px;
-}
-
-.title-form{
-    font-weight: 400; 
-    text-shadow: 0.5px 0.2px #fff;
-}
-
-
+/* Input Geral */
 .form-group{
 	margin-bottom: 15px;
 }
@@ -184,40 +104,7 @@ body{
 }
 
 
-.bannerDefault{
-    margin-bottom: 50px;
-    padding: 0px;
-}
-
-.img-bannerDefault{
-    width: 100%;
-    height: auto;
-}
-
-.banner{
-    height: 60px;
-    width: 90%;
-    background-image: url("bannerMaps.jpg");
-    background-repeat: no-repeat;
-    align-items: center;
-}
-.cardHouse{
-    margin-left: 30px;
-}
-
-.form-login{
-    margin-top: 50px;
-    background-color: white;
-    padding: 30px;
-    border-radius: 20px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.21)!important;
-}
-
-
 /* POPUP GREY */
-
 
 @media screen and (max-width: 990px){
     .dialog-grey{
@@ -226,11 +113,9 @@ body{
 
     .content-grey{
         position: relative;
-        width: auto;
+        width: auto!important;
     }
 }
-
-
 
 /* position popup */
 .modal-grey{
@@ -364,53 +249,27 @@ body{
     background-color: #e40000;
 }
 
-/* CardMenu */
+/* Fim Popup Login */
 
-@media screen and (min-width: 990px){
-    .content-lista{
-        margin-left: 0px;
-        
-    }
-
-    .card{
-        width: 350px;
-    }
-}
 
 
 /* Celular */
 @media screen and (max-width: 990px){
-    .content-lista{
-        margin-left: -50px;
-    
+
+    .bl-titulo{
+        font-size: 24px;
     }
 
+    .bl-text{
+        font-size: 20px;
+    }
 
-    .card{
-        width: 300px;
+    .chat-input{
+        width: 93%!important;
     }
 }
 
 
-
-
-
-.card-house{
-    margin-bottom: 75px;
-}
-
-.card-imovel{
-    padding:10px 0px 0px 5px;
-}
-
-.card-imovel h6{
-    font-weight: 300px;
-}
-
-.card-imovel p{
-    margin-bottom: 5px;
-    font-size: 14px;
-}
 
 
 /* Delete user */
@@ -420,3 +279,30 @@ body{
 
     color:white;
 }
+
+/* Perfil*/
+
+/* Descobrir perfil*/
+
+#descobrir-perfil{
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.blText{
+    margin-top: 20px;
+}
+
+.chat-input{
+    position: fixed;
+    bottom: 10px;
+    width: 98%;
+}
+
+.resposta-nome{
+    width: 100%;
+    display: flex;
+     justify-content: flex-end;
+  
+}
+

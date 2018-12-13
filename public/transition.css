@@ -1,0 +1,62 @@
+
+/* Animações de entrada e saída podem utilizar diferentes  */
+/* funções de duração e de tempo.                          */
+
+/* Titulo  */
+.slide-titulo-enter-active {
+    transition: all .5s ease;
+}
+
+.slide-titulo-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+
+.slide-titulo-enter, .slide-fade-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* Subtitulo */
+.slide-second-enter-active {
+    transition: all  .5s ease;
+    transition-delay: 2s;
+}
+.slide-second-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-second-enter, .slide-fade-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* Texto lento */
+
+.slide-text-enter-active {
+    transition: all  .5s ease;
+    transition-delay: 4s;
+}
+.slide-text-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-text-enter, .slide-fade-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* Tinput */
+
+.slide-input-enter-active {
+    transition: all  .8s ease;
+    transition-delay: 5s;
+}
+.slide-input-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-input-enter, .slide-input-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}

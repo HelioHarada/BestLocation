@@ -14,6 +14,7 @@ Vue.component('menu-header', {
   <a class="navbar-brand" href="index.html">
      <img class="img-logo" src="img/Logobranca.png">
     </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -40,6 +41,7 @@ Vue.component('menu-header', {
             <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
             <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
             <a class="dropdown-item" href="deletar.html">Deletar</a>
+            <a class="dropdown-item" href="perfil.html">Descobrindo Perfil</a>
 
           </div>
         </li> 
@@ -88,7 +90,7 @@ Vue.component('login-modal', {
      </div>
      <div class="modal-body body-grey">
 
-     <!--  ================== Tabs ====================== -->
+      <!--  ================== Tabs ====================== -->
 
        <div class="tab-content" >
 
@@ -103,8 +105,6 @@ Vue.component('login-modal', {
                <input type="email" class="form-control input-grey" id="exampleInputE2mail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
               
              </div>
-
-
 
              <div class="form-group">
                <!-- <label for="exampleInputPassword1">Password</label> -->
@@ -183,7 +183,10 @@ Vue.component('login-modal', {
       if (!this.username) {
         this.errors.push('O Nome é obrigatório.');
       }
-
+      if(this.username == "love")
+      {
+        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio")
+      }
       if (!this.email) {
         this.errors.push('O email é obrigatório.');
       }
@@ -354,8 +357,6 @@ Vue.component('card-house', {
          <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}}</p>
          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
-    
-         
         </div>
     </div>
   </div>
@@ -797,5 +798,98 @@ Vue.component('delete-confirm', {
 
 var descModal = new Vue({
   el: '#place-delete-modal',
+
+})
+
+/*
+================== Perfil ================================
+*/
+
+Vue.component('descobrir-perfil',{
+  template: ` 
+  
+  <div>
+    <div class="bl-chat">
+        <transition name="slide-titulo">
+          <h1 class="bl-titulo" v-if="show">{{blMessageTitle}}</h1>
+        </transition>
+
+        <transition name="slide-second">
+          <h2 v-if="show" class="bl-text">{{blMessagesub}}</h2>
+        </transition>
+
+        <transition name="slide-text" >
+          <h2 v-if="show" class="bl-text" >{{blMessageText}}</h2>
+        </transition>
+    </div>
+
+    <div class="resposta-nome">
+       <h2 class="bl-text" >{{perfil[0]}}</h2>
+    </div>
+    
+    <transition name="slide-titulo" >
+        <h2 v-if="show2"  class="bl-text" >Olá {{perfil[0]}} tudo bem? </h2>
+   </transition>
+
+    <div class="chat-input">
+       <div class="form-group">
+            <transition name="slide-input">
+                  <input  @keyup.enter="pushInfo(info)" v-if="show" v-model="info" class="form-control input-grey"> 
+            </transition>
+        </div>
+       
+        <div>
+            <transition name="slide-input">
+                <button v-if="show" @click="pushInfo(info)" class="btn button-grey">Enviar</button>
+          </transition>
+        </div>   
+    </div>
+
+
+  </div>
+
+  `,
+  data()  {
+    return{
+      blMessageTitle : '',
+      blMessagesub : '',
+      blMessageText: '',
+      show: false,
+      show2: false,
+
+      perfil: [],
+      name: '',
+      info:''
+    }
+  },
+  methods: {
+    chatStart(){
+      let self = this;
+      self.blMessageTitle = "Olá nós somos a BestLocation!", 
+      self.blMessagesub = "Vamos te ajudar a descobrir seu perfil.",
+      self.blMessageText = "primeiramente como posso te chamar?"
+
+      self.show = true
+
+    },
+
+    pushInfo(){
+      let self = this;
+      self.perfil.push(self.info);
+      self.show2 = true
+      console.log(self.perfil);
+      
+    }
+  },
+  created() {
+    let self = this;
+    setTimeout(function(){
+      self.chatStart();
+    },1000)
+  }
+})
+
+var descModal = new Vue({
+  el: '#descobrir-perfil',
 
 })
