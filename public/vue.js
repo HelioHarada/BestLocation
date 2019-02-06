@@ -893,3 +893,27 @@ var descModal = new Vue({
   el: '#descobrir-perfil',
 
 })
+
+
+/*
+=================== Form Chat ===========================
+*/
+Vue.component('chat-bot',{
+  template: `
+<div>
+<form id="form" cf-form cf-prevent-autofocus>
+<input type="text" name="tester" value="Name" id="ok"  class="form-control" cf-questions="Digite seu nome" />
+
+<input cf-questions="Great to meet you, {previous-answer}! I'm a web form, what do you do?|Awesome, {previous-answer}! And what do you do?" type="radio" name="occupation" id="occupation-1" value="developer">
+<button type="submit">Submit</button>
+</form>
+
+</div>
+  
+  `
+})
+
+var formChat = new Vue({
+  el: '#form-chat',
+
+})
