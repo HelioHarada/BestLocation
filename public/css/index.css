@@ -133,3 +133,24 @@
     text-shadow: 6px 6px 10px rgba(0,0,0,0.2);
 	box-shadow: inset 0 0 0 3px #d35400; */
 }
+
+.footer{
+    background-color: #343A40;
+    
+}
+
+.cp_right{
+    color:white;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.place_icon_social{
+    margin-top: 10px;
+}
+.icon_social_media{
+    cursor: pointer;
+    width: 40px;
+}
+
